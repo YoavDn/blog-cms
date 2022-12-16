@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     googleClientId: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
   },
   auth: {
     // The module is enabled. Change this to disable the module
