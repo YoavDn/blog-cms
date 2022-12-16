@@ -1,15 +1,7 @@
 //nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxtjs/tailwindcss',
-    'nuxt-icon',
-    '@sidebase/nuxt-auth',
-    'nuxt-headlessui',
-  ],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@sidebase/nuxt-auth'],
 
-  headlessui: {
-    prefix: 'Headless',
-  },
   runtimeConfig: {
     googleClientId: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
