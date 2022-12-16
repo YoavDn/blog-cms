@@ -60,8 +60,6 @@ model Session {
   @@index([userId])
 }
 
-
-
 model VerificationToken {
   identifier String
   token      String   @unique
