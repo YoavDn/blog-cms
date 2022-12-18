@@ -1,3 +1,6 @@
 <template>
-  <slot />
+  <div>
+    <DashboardHeader />
+    <slot />
+  </div>
 </template>
