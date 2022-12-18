@@ -12,7 +12,6 @@ const { data: session, signOut } = useSession()
         alt=""
         class="w-8 h-8 rounded-full"
       />
-      <Icon v-else name="heroicons:user" class="w-8" />
     </MenuButton>
     <transition
       enter-active-class="transition duration-100 ease-out"
