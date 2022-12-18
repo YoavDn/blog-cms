@@ -1,10 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <header class="flex">
-    <h1>logo</h1>
+  <header class="flex py-3 justify-between">
+    <h1 class="font-extrabold">Blogger's Kit</h1>
     <ul class="flex">
-      <NuxtLink to="/login">Login</NuxtLink>
+      <h1>some st</h1>
     </ul>
   </header>
 </template>
