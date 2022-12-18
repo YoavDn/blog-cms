@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import {
   TransitionRoot,
   TransitionChild,
   Dialog,
   DialogPanel,
   DialogTitle,
+  DialogDescription,
 } from '@headlessui/vue'
+const { data: session, signIn } = useSession()
 
-const isOpen = ref(true)
+const isOpen = ref(false)
 
 function closeModal() {
   isOpen.value = false
@@ -55,6 +58,7 @@ function openModal() {
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
+              as="div"
               class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all"
             >
               <DialogTitle
@@ -65,18 +69,22 @@ function openModal() {
               </DialogTitle>
               <div class="mt-2 w-full font-semibold">
                 <button
+                  type="button"
+                  @click="signIn('google')"
                   class="w-full py-2 mt-2 rounded-md border-gray-500 border bg-white"
                 >
-                  <Icon name="logos:google-icon" class="w-4 y-4 mr-1" />
+                  <Icon name="logos:google-icon" class="w-3 y-3 mr-1" />
                   Login With Google
                 </button>
                 <button
+                  type="button"
                   class="w-full mt-2 py-2 rounded-md text-white bg-twitter"
                 >
                   <Icon name="mdi:twitter" class="fill-white w-4 h-4 mr-1" />
                   Login With Google
                 </button>
                 <button
+                  type="button"
                   class="w-full mt-2 py-2 rounded-md text-white bg-github"
                 >
                   <Icon name="mdi:github" class="fill-white w-4 h-4 mr-1" />
@@ -93,6 +101,11 @@ function openModal() {
                   Got it, thanks!
                 </button>
               </div>
+              <DialogDescription>
+                <p class="text-center py-4 text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </p>
+              </DialogDescription>
             </DialogPanel>
           </TransitionChild>
         </div>
