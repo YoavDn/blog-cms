@@ -55,7 +55,7 @@ function openModal() {
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all"
             >
               <DialogTitle
                 as="h3"
@@ -63,23 +63,23 @@ function openModal() {
               >
                 BLOGGER'S KIT
               </DialogTitle>
-              <div class="mt-2 w-full">
+              <div class="mt-2 w-full font-semibold">
                 <button
-                  class="w-full py-3 mt-2 rounded-md border-gray-500 border bg-white"
+                  class="w-full py-2 mt-2 rounded-md border-gray-500 border bg-white"
                 >
-                  <Icon name="logos:google-icon" />
+                  <Icon name="logos:google-icon" class="w-4 y-4 mr-1" />
                   Login With Google
                 </button>
                 <button
-                  class="w-full mt-2 py-3 rounded-md text-white bg-twitter"
+                  class="w-full mt-2 py-2 rounded-md text-white bg-twitter"
                 >
-                  <Icon name="mdi:twitter" class="fill-white w-6 h-6 mr-2" />
+                  <Icon name="mdi:twitter" class="fill-white w-4 h-4 mr-1" />
                   Login With Google
                 </button>
                 <button
-                  class="w-full mt-2 py-3 rounded-md text-white bg-github"
+                  class="w-full mt-2 py-2 rounded-md text-white bg-github"
                 >
-                  <Icon name="mdi:github" class="fill-white w-6 h-6 mr-2" />
+                  <Icon name="mdi:github" class="fill-white w-4 h-4 mr-1" />
                   Login With Github
                 </button>
               </div>
