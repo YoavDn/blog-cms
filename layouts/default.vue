@@ -1,6 +1,8 @@
 <template>
   <div>
     <DashboardHeader />
-    <slot />
+    <main class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <slot />
+    </main>
   </div>
 </template>
