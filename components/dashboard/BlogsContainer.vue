@@ -8,13 +8,14 @@ const dummyBlogs = [
     content: null,
     lastUpdate: '2h ago..',
     published: true,
+    publishedAt: 'Dec 14',
     authorId: 1,
     image:
       'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1778&q=80',
     id: 1,
   },
   {
-    title: "Why will won't be able to center a div in 2030",
+    title: "Why we will won't be able to center a div in 2030",
     createdAt: 'sunday',
     content: null,
     lastUpdate: '2h ago..',
@@ -49,7 +50,7 @@ const dummyBlogs = [
 
 <template>
   <div
-    class="blogs-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 py-4"
+    class="blogs-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4"
   >
     <BlogCard v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
   </div>

@@ -8,7 +8,7 @@ console.log(session.value?.user)
   <div class="p-4 sm:px-6 lg:px-8 border-b border-gray-300">
     <main class="flex justify-between">
       <section class="flex items-center gap-4">
-        <NuxtLink to="/" class="font-extrabold">BLOGGER'S KIT</NuxtLink>
+        <NuxtLink to="/" class="font-extrabold">BLOGIFFY</NuxtLink>
         <h1 class="text-2xl text-gray-500 font-extralight">/</h1>
         <img
           v-if="session?.user?.image"
