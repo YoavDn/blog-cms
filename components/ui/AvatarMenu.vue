@@ -65,7 +65,7 @@ const { data: session, signOut } = useSession()
                 'group flex w-full  items-center  px-4 py-4 text-sm',
               ]"
             >
-              Log Out
+              Logout
             </button>
           </MenuItem>
         </div>
