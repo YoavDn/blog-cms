@@ -4,6 +4,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
   if (status.value === 'authenticated') {
     return navigateTo('/dashboard')
   } else {
-    return navigateTo('/login')
+    return navigateTo('/')
   }
 })

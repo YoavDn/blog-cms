@@ -59,7 +59,7 @@ const { data: session, signOut } = useSession()
           </MenuItem>
           <MenuItem v-slot="{ active }">
             <button
-              @click="signOut(c)"
+              @click="signOut()"
               :class="[
                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                 'group flex w-full  items-center  px-4 py-4 text-sm',

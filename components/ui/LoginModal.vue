@@ -70,7 +70,7 @@ function openModal() {
               <div class="mt-2 w-full font-semibold">
                 <button
                   type="button"
-                  @click="signIn('google')"
+                  @click="signIn('google', { callbackUrl: '/dashboard' })"
                   class="w-full py-2 mt-2 rounded-md border-gray-500 border bg-white"
                 >
                   <Icon name="logos:google-icon" class="w-3 y-3 mr-1" />
