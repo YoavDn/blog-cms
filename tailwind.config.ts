@@ -13,6 +13,13 @@ module.exports = {
         twitter: '#1d9bf0',
         github: '#161b22',
       },
+      screens: {
+        xxsm: '380px',
+        xsm: '480px',
+        md: '768px',
+        lg: '976px',
+        xl: '1440px',
+      },
     },
   },
   plugins: [],

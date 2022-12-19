@@ -47,14 +47,14 @@ function isActiveLayout(type: 'list' | 'grid') {
       </button>
     </div>
     <button
-      class="group/new-post basis-2/12 h-10 text-white md:hover:text-black md:hover:bg-white ease-in-out duration-150 md:hover:border-black border bg-black rounded-md text-start px-4 text-sm flex items-center justify-center sm:justify-start"
+      class="group/new-post basis-2/12 h-10 text-white md:hover:text-black md:hover:bg-white ease-in-out duration-150 md:hover:border-black border bg-black rounded-md text-start px-4 text-sm flex items-center justify-center md:justify-start"
     >
       <span class="pr-1 text-center"
         ><Icon
           name="heroicons:plus"
           class="h-12 w-4 text-white md:group-hover/new-post:text-black ease-in-out duration-150"
       /></span>
-      <span class="hidden sm:block"> New Post </span>
+      <span class="hidden md:block"> New Post </span>
     </button>
   </div>
 </template>

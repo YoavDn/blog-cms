@@ -34,12 +34,15 @@ const { blog } = defineProps<{
     <h2 class="sm:basis-5/12 basis-8/12 pr-6 truncate">{{ blog.title }}</h2>
     <div
       v-if="blog.published"
-      class="info flex flex-col basis-5/12 hidden sm:block font-light text-sm text-gray-500"
+      class="info flex flex-col basis-5/12 hidden xxsm:block font-light text-sm text-gray-500"
     >
       <p>Published: {{ blog.publishedAt }}</p>
       <p>Edited: {{ blog.lastUpdate }}</p>
     </div>
-    <p v-else class="text-red-600 text-xs bg-red-200 px-2 py-1 rounded-md">
+    <p
+      v-else
+      class="text-red-600 text-xs bg-red-200 px-2 py-1 rounded-md hidden xxsm:block"
+    >
       DRAFT
     </p>
   </article>
