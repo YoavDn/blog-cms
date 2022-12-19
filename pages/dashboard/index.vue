@@ -8,7 +8,7 @@ const { status } = useSession()
 </script>
 
 <template>
-  <div class="">
+  <div>
     <DashboardSearchBar />
   </div>
 </template>

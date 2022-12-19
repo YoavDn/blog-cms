@@ -5,7 +5,7 @@ console.log(session.value?.user)
 </script>
 
 <template>
-  <div class="p-4 sm:px-6 lg:px-8">
+  <div class="p-4 sm:px-6 lg:px-8 border-b border-gray-300">
     <main class="flex justify-between">
       <section class="flex items-center gap-4">
         <NuxtLink to="/" class="font-extrabold">BLOGGER'S KIT</NuxtLink>
