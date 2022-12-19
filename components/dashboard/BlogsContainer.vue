@@ -59,7 +59,7 @@ const dummyBlogs = [
   >
     <BlogCard v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
   </div>
-  <div v-else>
+  <div v-else class="flex flex-col gap-6 py-4">
     <BlogListItem v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
   </div>
 </template>

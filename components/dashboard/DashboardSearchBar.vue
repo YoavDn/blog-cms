@@ -19,7 +19,10 @@ function isActiveLayout(type: 'list' | 'grid') {
         ><Icon name="heroicons-solid:search" class="h-10 w-5 text-gray-400"
       /></span>
     </div>
-    <div class="bg-white flex h-10 mx-2 border-collapse basis-1/12">
+    <div
+      class="bg-white flex h-10 mx-2 border-collapse basis-1/12"
+      title="Switch between grid and list view"
+    >
       <button
         @click="$emit('changeLayout', 'grid')"
         class="border-l border border-gray-200 rounded-l-md px-2 md:hover:border-gray-800 ease-in-out duration-150"
