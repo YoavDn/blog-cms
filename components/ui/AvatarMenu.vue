@@ -10,7 +10,7 @@ const { data: session, signOut } = useSession()
         v-if="session?.user?.image"
         :src="session.user?.image"
         alt=""
-        class="w-8 h-8 rounded-full"
+        class="w-7 h-7 rounded-full border border-gray-300"
       />
     </MenuButton>
     <transition
