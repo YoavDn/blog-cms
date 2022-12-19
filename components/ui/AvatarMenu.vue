@@ -4,7 +4,7 @@ const { data: session, signOut } = useSession()
 </script>
 
 <template>
-  <Menu as="div" class="relative inline-block text-left">
+  <Menu as="div" class="relative z-40 inline-block text-left">
     <MenuButton class="text-black">
       <img
         v-if="session?.user?.image"

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import BlogCard from './BlogCard.vue'
+import BlogListItem from './BlogListItem.vue'
+const props = defineProps<{
+  layout: 'list' | 'grid'
+}>()
 
 const dummyBlogs = [
   {
@@ -50,9 +54,13 @@ const dummyBlogs = [
 
 <template>
   <div
+    v-if="layout === 'grid'"
     class="blogs-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4"
   >
     <BlogCard v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
+  </div>
+  <div v-else>
+    <BlogListItem v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
   </div>
 </template>
 

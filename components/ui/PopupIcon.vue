@@ -7,7 +7,7 @@ const { isShowing, icon } = defineProps<{ isShowing: boolean; icon: string }>()
 
 <template>
   <div
-    class="h-9 w-9 z-40 rounded-full absolute right-0 translate-x-3 -translate-y-3"
+    class="h-9 w-9 z-10 rounded-full absolute right-0 translate-x-3 -translate-y-3"
   >
     <TransitionRoot
       appear
