@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{ layout: 'grid' | 'list' }>()
+
+function isActiveLayout(type: 'list' | 'grid') {
+  return type === props.layout
+}
+</script>
 
 <template>
   <div class="relative py-3 flex w-full flex items-center">
@@ -15,14 +21,26 @@
     </div>
     <div class="bg-white flex h-10 mx-2 border-collapse basis-1/12">
       <button
+        @click="$emit('changeLayout', 'grid')"
         class="border-l border border-gray-200 rounded-l-md px-2 md:hover:border-gray-800 ease-in-out duration-150"
+        :class="{ 'bg-gray-100': isActiveLayout('grid') }"
       >
-        <Icon name="heroicons:squares-2x2" class="h-10 w-5 text-gray-400" />
+        <Icon
+          name="heroicons:squares-2x2"
+          class="h-10 w-5 text-gray-400"
+          :class="{ 'text-gray-900': isActiveLayout('grid') }"
+        />
       </button>
       <button
+        @click="$emit('changeLayout', 'list')"
         class="border-r border border-gray-200 rounded-r-md px-2 md:hover:border-gray-800 ease-in-out duration-150"
+        :class="{ 'bg-gray-100': isActiveLayout('list') }"
       >
-        <Icon name="heroicons:list-bullet" class="h-10 w-5 text-gray-400" />
+        <Icon
+          name="heroicons:list-bullet"
+          class="h-10 w-5 text-gray-400"
+          :class="{ 'text-gray-900': isActiveLayout('list') }"
+        />
       </button>
     </div>
     <button

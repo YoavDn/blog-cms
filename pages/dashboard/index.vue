@@ -4,14 +4,17 @@ definePageMeta({
   middleware: 'auth',
   layout: 'default',
 })
-
 const { status } = useSession()
+const layout = ref<'list' | 'grid'>('grid')
 </script>
 
 <template>
   <div>
-    <DashboardSearchBar />
-    <BlogsContainer />
+    <DashboardSearchBar
+      @changeLayout="type => (layout = type)"
+      :layout="layout"
+    />
+    <BlogsContainer :layout="layout" />
   </div>
 </template>
 
