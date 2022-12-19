@@ -6,6 +6,7 @@ const dummyBlogs = [
     title: 'My first blog',
     createdAt: 'sunday',
     content: null,
+    lastUpdate: '2h ago..',
     published: true,
     authorId: 1,
     image:
@@ -13,9 +14,10 @@ const dummyBlogs = [
     id: 1,
   },
   {
-    title: 'My second blog',
+    title: "Why will won't be able to center a div in 2030",
     createdAt: 'sunday',
     content: null,
+    lastUpdate: '2h ago..',
     authorId: 1,
     image:
       'https://images.unsplash.com/photo-1506564461966-4107c88f6d29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1429&q=80',
@@ -25,6 +27,7 @@ const dummyBlogs = [
   {
     title: 'My third blog',
     createdAt: 'sunday',
+    lastUpdate: '2h ago..',
     content: null,
     authorId: 1,
     image:
@@ -35,6 +38,7 @@ const dummyBlogs = [
   {
     title: 'My third blog',
     createdAt: 'sunday',
+    lastUpdate: '2h ago..',
     content: null,
     authorId: 1,
     published: false,
@@ -51,4 +55,4 @@ const dummyBlogs = [
   </div>
 </template>
 
-<style lang="scss"></style>
+<style></style>
