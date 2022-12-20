@@ -53,8 +53,8 @@ const isShowing = ref(false)
         </p>
       </div>
       <div v-else class="draft flex items-center">
-        <Icon name="heroicons:x-circle-20-solid" class="text-red-400" />
-        <p class="text-red-400 rounded-md text-sm p-1">Draft</p>
+        <Icon name="heroicons:x-circle-20-solid" class="text-red-500" />
+        <p class="text-red-500 rounded-md text-sm p-1">Draft</p>
       </div>
     </div>
     <div class="Actions"></div>

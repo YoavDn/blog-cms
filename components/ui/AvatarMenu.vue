@@ -12,6 +12,10 @@ const { data: session, signOut } = useSession()
         alt=""
         class="w-7 h-7 rounded-full border border-gray-300"
       />
+      <div
+        v-else
+        class="w-7 h-7 rounded-full border border-gray-300 bg-gradient-to-tl from-cyan-500 to-blue-500"
+      ></div>
     </MenuButton>
     <transition
       enter-active-class="transition duration-100 ease-out"
