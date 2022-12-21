@@ -4,6 +4,14 @@ const props = defineProps<{ layout: 'grid' | 'list' }>()
 function isActiveLayout(type: 'list' | 'grid') {
   return type === props.layout
 }
+
+function newBlogPost() {
+  console.log('new post')
+  useFetch('/api/blog', {
+    method: 'POST',
+    body: {},
+  })
+}
 </script>
 
 <template>
@@ -47,6 +55,7 @@ function isActiveLayout(type: 'list' | 'grid') {
       </button>
     </div>
     <button
+      @click="newBlogPost"
       class="group/new-post basis-2/12 h-10 dark:text-black dark:bg-white text-white dark:md:hover:text-white dark:md:hover:border-white dark:md:hover:bg-black md:hover:text-black md:hover:bg-white ease-in-out duration-150 md:hover:border-black border bg-black rounded-md text-start px-4 text-sm flex items-center justify-center md:justify-start"
     >
       <span class="pr-1 text-center"

@@ -74,7 +74,7 @@ model BlogPost {
     userId         Int 
     createdAt      DateTime  @default(now()) @db.Timestamp(6)
     updatedAt      DateTime  @updatedAt
-    title          String    @db.VarChar(255)
+    title          String    @db.VarChar(255) @default("Untitled")
     content        String?   
     published      Boolean   @default(false)
     publishedAt    DateTime?

@@ -3,22 +3,22 @@ import { getServerSession } from '#auth'
 
 export default defineEventHandler(async event => {
   const session = await getServerSession(event)
-
+  console.log(session)
   if (!session) {
     return { status: 'unauthenticated!' }
   }
+  const body = await readBody(event)
   const user = await prisma.user.findUnique({
     where: {
       email: session!.user!.email!,
     },
   })
-  const blogs = await prisma.blogPost.findMany({
-    where: {
-      userId: user?.id,
+  console.log(body, 'user is:', user!.id)
+  const blogPost = await prisma.blogPost.create({
+    data: {
+      userId: user!.id,
     },
   })
-  console.log(blogs)
-  return {
-    api: 'work',
-  }
+
+  return blogPost
 })
