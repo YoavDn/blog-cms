@@ -5,11 +5,12 @@ export default defineEventHandler(async event => {
   const session = await getServerSession(event)
   console.log('session is:', session)
   if (!session) {
-    return { status: 'unauthenticated!' }
+    console.log('unauthenticated!')
+    return null
   }
   const user = await prisma.user.findUnique({
     where: {
-      email: session.user?.email?,
+      email: session.user?.email!,
     },
   })
   const blogs = await prisma.blogPost.findMany({
