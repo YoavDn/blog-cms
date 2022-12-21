@@ -21,7 +21,7 @@ const isShowing = ref(false)
   <article
     @mouseenter="() => (isShowing = true)"
     @mouseleave="() => (isShowing = false)"
-    class="md:hover:cursor-pointer blog-card relative h-56 border rounded-md dark:border-neutral-700 dark:bg-black border-gray-200 bg-white shadow-sm hover:shadow-md ease-in-out duration-150"
+    class="md:hover:cursor-pointer blog-card relative h-56 border md:dark:hover:border-white rounded-md dark:border-neutral-700 dark:bg-black border-gray-200 bg-white shadow-sm hover:shadow-md ease-in-out duration-150"
   >
     <PopupIcon :isShowing="isShowing" icon="heroicons:pencil-square" />
     <img
