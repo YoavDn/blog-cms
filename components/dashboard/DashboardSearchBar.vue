@@ -12,7 +12,7 @@ function isActiveLayout(type: 'list' | 'grid') {
       <input
         type="text"
         placeholder="Search.."
-        class="order-1 peer/input h-full bg-white dark:bg-black ease-in-out duration-150 focus:border-gray-800 dark:focus:border-neutral-500 px-3 border-r border-t w-full rounded-r-md border-gray-200 dark:border-neutral-700 border-b placeholder:font-light outline-none placeholder:text-sm"
+        class="order-1 peer/input h-full dark:text-white bg-white dark:bg-black ease-in-out duration-150 focus:border-gray-800 dark:focus:border-neutral-500 px-3 border-r border-t w-full rounded-r-md border-gray-200 dark:border-neutral-700 border-b placeholder:font-light outline-none placeholder:text-sm"
       />
       <span
         class="h-full pl-3 text-gray-400 bg-white dark:bg-black rounder-l-md border-l border-y rounded-l-md peer-focus/input:border-gray-800 dark:peer-focus/input:border-neutral-500 ease-in-out duration-150 dark:border-neutral-700"
@@ -20,12 +20,12 @@ function isActiveLayout(type: 'list' | 'grid') {
       /></span>
     </div>
     <div
-      class="bg-white flex h-10 mx-2 border-collapse basis-1/12 dark:bg-black rounded-md"
+      class="flex h-10 mx-2 border-collapse basis-1/12 rounded-md justify-center"
       title="Switch between grid and list view"
     >
       <button
         @click="$emit('changeLayout', 'grid')"
-        class="border-l border border-gray-200 dark:border-neutral-700 dark:bg-black rounded-l-md px-2 md:hover:border-gray-800 ease-in-out duration-150"
+        class="border-l border border-gray-200 dark:border-neutral-700 md:dark:hover:border-neutral-500 dark:bg-black rounded-l-md px-2 md:hover:border-gray-800 ease-in-out duration-150"
         :class="{ 'bg-gray-100 dark:bg-neutral-800': isActiveLayout('grid') }"
       >
         <Icon
@@ -36,7 +36,7 @@ function isActiveLayout(type: 'list' | 'grid') {
       </button>
       <button
         @click="$emit('changeLayout', 'list')"
-        class="border-r border border-gray-200 rounded-r-md px-2 dark:border-neutral-700 md:hover:border-gray-800 ease-in-out duration-150"
+        class="border-r border border-gray-200 rounded-r-md px-2 dark:border-neutral-700 md:dark:hover:border-neutral-500 md:hover:border-gray-800 ease-in-out duration-150"
         :class="{ 'bg-gray-100 dark:bg-neutral-800': isActiveLayout('list') }"
       >
         <Icon
