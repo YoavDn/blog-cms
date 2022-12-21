@@ -1,6 +1,14 @@
 //nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@sidebase/nuxt-auth'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+    '@sidebase/nuxt-auth',
+    '@nuxtjs/color-mode',
+  ],
+  colorMode: {
+    classSuffix: '',
+  },
 
   runtimeConfig: {
     googleClientId: process.env.GOOGLE_CLIENT_ID,
