@@ -3,12 +3,10 @@ import BlogsContainer from '~~/components/dashboard/BlogsContainer.vue'
 definePageMeta({
   layout: 'default',
 })
-const { status } = useSession()
 const layout = ref<'list' | 'grid'>('grid')
+const { data: blogs, pending, error, refresh } = await useFetch('/api/blog')
 
-const { data, pending, error, refresh } = await useFetch('/api/blog')
-
-console.log(data.value)
+onMounted(() => refresh())
 </script>
 
 <template>
@@ -17,8 +15,10 @@ console.log(data.value)
       @changeLayout="type => (layout = type)"
       :layout="layout"
     />
-    <BlogsContainer :layout="layout" />
+    <div class="" v-if="pending && !error">stuff</div>
+    <BlogsContainer v-else :layout="layout" :blogs="blogs" />
   </div>
+  <div class="" v-if="error"></div>
 </template>
 
 <style lang="scss"></style>

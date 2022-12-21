@@ -3,7 +3,10 @@ import BlogCard from './BlogCard.vue'
 import BlogListItem from './BlogListItem.vue'
 const props = defineProps<{
   layout: 'list' | 'grid'
+  blogs: any
 }>()
+
+console.log(props.blogs)
 
 const dummyBlogs = [
   {
