@@ -2,9 +2,12 @@
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-console.log(route)
 </script>
 
-<template></template>
+<template>
+  <p class="dark:text-white">
+    {{ $route.params.users }} - {{ $route.params.id }}
+  </p>
+</template>
 
 <style lang="scss"></style>

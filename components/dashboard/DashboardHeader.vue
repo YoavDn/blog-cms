@@ -17,9 +17,9 @@ const { data: session } = useSession()
             /
           </h1>
 
-          <h2 class="font-medium dark:text-neutral-200">
+          <NuxtLink to="/dashboard" class="font-medium dark:text-neutral-200">
             {{ session?.user?.name }}
-          </h2>
+          </NuxtLink>
         </section>
         <section>
           <!-- <img
