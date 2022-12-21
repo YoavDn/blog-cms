@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AvatarMenu from '../ui/AvatarMenu.vue'
 const { data: session } = useSession()
-console.log(session.value?.user)
 </script>
 
 <template>
