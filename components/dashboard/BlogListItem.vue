@@ -16,7 +16,7 @@ const { blog } = defineProps<{
 
 <template>
   <article
-    class="rounded-md sm:cursor-pointer overflow-hidden relative h-20 bg-white p-6 border broder-gray-200 shadow-sm md:hover:shadow-md ease-in-out duration-200 flex items-center"
+    class="rounded-md sm:cursor-pointer overflow-hidden relative h-20 bg-white dark:bg-black dark:border-neutral-700 p-6 border broder-gray-200 shadow-sm md:hover:shadow-md ease-in-out duration-200 flex items-center"
   >
     <div class="sm:basis-1/12 hidden sm:block">
       <img
@@ -31,7 +31,9 @@ const { blog } = defineProps<{
       />
     </div>
 
-    <h2 class="sm:basis-5/12 basis-8/12 pr-6 truncate">{{ blog.title }}</h2>
+    <h2 class="sm:basis-5/12 basis-8/12 pr-6 truncate dark:text-neutral-200">
+      {{ blog.title }}
+    </h2>
     <div
       v-if="blog.published"
       class="info flex flex-col basis-5/12 hidden xxsm:block font-light text-sm text-gray-500"

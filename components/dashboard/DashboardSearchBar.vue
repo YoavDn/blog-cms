@@ -20,7 +20,7 @@ function isActiveLayout(type: 'list' | 'grid') {
       /></span>
     </div>
     <div
-      class="bg-white flex h-10 mx-2 border-collapse basis-1/12 dark:bg-black"
+      class="bg-white flex h-10 mx-2 border-collapse basis-1/12 dark:bg-black rounded-md"
       title="Switch between grid and list view"
     >
       <button

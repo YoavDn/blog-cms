@@ -21,11 +21,11 @@ const { isShowing, icon } = defineProps<{ isShowing: boolean; icon: string }>()
       leave-to="opacity-0 scale-95 "
     >
       <div
-        class="h-full w-full group/edit rounded-full border border-black bg-black shadow-lg flex items-center justify-center hover:bg-gray-50"
+        class="h-full w-full group/edit rounded-full border dark:bg-white border-black dark:border-neutral-700 bg-black shadow-lg flex items-center justify-center hover:bg-gray-50 dark:hover:bg-black"
       >
         <Icon
           :name="icon"
-          class="text-gray-200 w-5 h-5 group-hover/edit:text-gray-800"
+          class="text-gray-200 dark:text-black w-5 h-5 group-hover/edit:text-gray-800 dark:group-hover/edit:text-white"
         />
       </div>
     </TransitionRoot>
