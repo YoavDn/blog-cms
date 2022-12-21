@@ -87,7 +87,7 @@ const colorMode = useColorMode()
           </div>
           <MenuItem v-slot="{ active }">
             <button
-              @click="signOut({ callbackUrl: '/' })"
+              @click="signOut({ redirect: true, callbackUrl: '/' })"
               :class="[
                 active
                   ? 'bg-gray-100 dark:bg-neutral-900 text-gray-900  dark:text-white'

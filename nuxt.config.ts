@@ -13,13 +13,13 @@ export default defineNuxtConfig({
   runtimeConfig: {
     googleClientId: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
+    authSecret: process.env.AUTH_SECRET,
   },
   auth: {
     // The module is enabled. Change this to disable the module
     isEnabled: true,
     // The origin is set to the development origin. Change this when deploying to production
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000/',
     // The base path to the authentication endpoints. Change this if you want to add your auth-endpoints at a non-default location
     basePath: '/api/auth',
     // Whether to periodically refresh the session. Change this to `true` for a refresh every seconds or set this to a number like `5000` for a refresh every 5000 milliseconds (aka: 5 seconds)
