@@ -60,10 +60,10 @@ const dummyBlogs = [
     v-if="layout === 'grid'"
     class="blogs-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4"
   >
-    <BlogCard v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
+    <BlogCard v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
   <div v-else class="flex flex-col gap-6 py-4">
-    <BlogListItem v-for="blog in dummyBlogs" :key="blog.id" :blog="blog" />
+    <BlogListItem v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
 </template>
 
