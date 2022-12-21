@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BlogsContainer from '~~/components/dashboard/BlogsContainer.vue'
 definePageMeta({
-  middleware: 'auth',
+  //   middleware: 'auth',
   layout: 'default',
 })
 const { status } = useSession()
