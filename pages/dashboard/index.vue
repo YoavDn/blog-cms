@@ -2,7 +2,10 @@
 import BlogsContainer from '~~/components/dashboard/BlogsContainer.vue'
 definePageMeta({
   //   layout: 'default',
+  title: 'hello',
+  //   middleware: 'auth',
 })
+
 const layout = ref<'list' | 'grid'>('grid')
 const { data: blogs, pending, error, refresh } = await useFetch('/api/blog')
 

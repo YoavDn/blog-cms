@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h2 class="dark:text-white">error</h2>
+  <h2>Edited</h2>
 </template>
 
 <style lang="scss"></style>

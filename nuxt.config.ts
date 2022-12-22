@@ -27,6 +27,6 @@ export default defineNuxtConfig({
     // Whether to refresh the session whenever a window focus event happens, i.e, when your user refocuses the window. Set this to `false` to turn this off
     enableSessionRefreshOnWindowFocus: false,
     // Whether to add a global authentication middleware that will protect all pages without exclusion
-    enableGlobalAppMiddleware: true,
+    // enableGlobalAppMiddleware: true,
   },
 })

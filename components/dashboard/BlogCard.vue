@@ -19,7 +19,7 @@ const isShowing = ref(false)
 </script>
 
 <template>
-  <NuxtLink :to="`${session?.user?.name}/${blog.id}`">
+  <NuxtLink :to="`blog/${blog.id}`">
     <article
       @mouseenter="() => (isShowing = true)"
       @mouseleave="() => (isShowing = false)"
