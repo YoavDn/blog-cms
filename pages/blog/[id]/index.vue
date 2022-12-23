@@ -4,9 +4,16 @@ definePageMeta({
   middleware: 'authentication',
 })
 const route = useRoute()
-const blog = await useFetch(`/api/blog/:${route.params.id}`)
+console.log(route.params.id)
+const { data: blog, refresh } = await useFetch(`/api/blog/${route.params.id}`)
+onMounted(() => refresh())
 </script>
 
-<template></template>
+<template>
+  <pre>
+        {{ blog }}
+    </pre
+  >
+</template>
 
 <style lang="scss"></style>
