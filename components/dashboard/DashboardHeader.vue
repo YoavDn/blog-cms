@@ -8,7 +8,11 @@ const blogTitle = computed(() => {
     .split('-')
     .slice(0, route.path.split('-').length - 1)
     .join()
-  return routeWithoutId.split('/')[route.path.split('/').length - 1]
+  return routeWithoutId.split('/')[2]
+})
+
+const onBlogPage = computed(() => {
+  return (route.name as string).includes('user-title') ? true : false
 })
 </script>
 
@@ -31,12 +35,14 @@ const blogTitle = computed(() => {
         </NuxtLink>
 
         <h1
-          v-if="route.name === 'user-title'"
+          v-if="onBlogPage"
           class="text-2xl text-gray-500 dark:text-neutral-700 font-extralight"
         >
           /
         </h1>
-        <NuxtLink v-if="route.name === 'user-title'">{{ blogTitle }}</NuxtLink>
+        <NuxtLink v-if="(route.name as string).includes('user-title')">{{
+          blogTitle
+        }}</NuxtLink>
       </section>
       <section>
         <!-- <img

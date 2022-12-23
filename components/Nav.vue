@@ -9,11 +9,23 @@ function updateLinks() {
     session.value?.user?.name?.replaceAll(' ', '_')
   ) {
     links.value = [
-      { name: 'Overview', route: `/blog/${route.fullPath.split('/')[2]}` },
-      { name: 'Edit', route: `/blog/${route.fullPath.split('/')[2]}/edit` },
+      {
+        name: 'Overview',
+        route: `/${session.value.user.name.replaceAll(' ', '_')}/${
+          route.fullPath.split('/')[2]
+        }`,
+      },
+      {
+        name: 'Edit',
+        route: `/${session.value.user.name.replaceAll(' ', '_')}/${
+          route.fullPath.split('/')[2]
+        }/edit`,
+      },
       {
         name: 'Settings',
-        route: `/blog/${route.fullPath.split('/')[2]}/settings`,
+        route: `/${session.value.user.name.replaceAll(' ', '_')}/${
+          route.fullPath.split('/')[2]
+        }/settings`,
       },
     ]
   } else {

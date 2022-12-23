@@ -4,7 +4,7 @@ definePageMeta({
 })
 const route = useRoute()
 const blogId = (route.params.title as string).split('-').pop()
-console.log(blogId)
+
 const { data: blog, refresh } = await useFetch(`/api/blog/${blogId}`)
 onMounted(() => refresh())
 </script>
