@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const route = useRoute()
-const links = ref([
-  { name: 'Overview', route: '/dashboard' },
-  { name: 'Settings', route: '/settings/' },
-])
+const links = ref<{ name: string; route: string }[]>()
+const { data: session } = useSession()
 
-watch(route, () => {
-  if (route.fullPath.split('/')[1] === 'blog') {
+function updateLinks() {
+  if (
+    route.fullPath.split('/')[1] ===
+    session.value?.user?.name?.replaceAll(' ', '_')
+  ) {
     links.value = [
       { name: 'Overview', route: `/blog/${route.fullPath.split('/')[2]}` },
       { name: 'Edit', route: `/blog/${route.fullPath.split('/')[2]}/edit` },
@@ -21,7 +22,15 @@ watch(route, () => {
       { name: 'Settings', route: '/settings/' },
     ]
   }
-})
+}
+updateLinks()
+
+watch(
+  () => route.fullPath,
+  () => {
+    updateLinks()
+  }
+)
 </script>
 
 <template>

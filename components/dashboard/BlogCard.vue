@@ -16,10 +16,16 @@ const { blog } = defineProps<{
 }>()
 
 const isShowing = ref(false)
+const blogRoute = computed(() => {
+  return `${session.value?.user?.name?.replaceAll(
+    ' ',
+    '_'
+  )}/${blog.title.replaceAll(' ', '-')}-${blog.id}`
+})
 </script>
 
 <template>
-  <NuxtLink :to="`blog/${blog.id}`">
+  <NuxtLink :to="blogRoute">
     <article
       @mouseenter="() => (isShowing = true)"
       @mouseleave="() => (isShowing = false)"

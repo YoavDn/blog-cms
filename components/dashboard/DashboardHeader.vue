@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import AvatarMenu from '../ui/AvatarMenu.vue'
 const { data: session } = useSession()
+const route = useRoute()
+
+const blogTitle = computed(() => {
+  const routeWithoutId = route.path
+    .split('-')
+    .slice(0, route.path.split('-').length - 1)
+    .join()
+  return routeWithoutId.split('/')[route.path.split('/').length - 1]
+})
 </script>
 
 <template>
@@ -20,6 +29,14 @@ const { data: session } = useSession()
         <NuxtLink to="/dashboard" class="font-medium dark:text-neutral-200">
           {{ session?.user?.name }}
         </NuxtLink>
+
+        <h1
+          v-if="route.name === 'user-title'"
+          class="text-2xl text-gray-500 dark:text-neutral-700 font-extralight"
+        >
+          /
+        </h1>
+        <NuxtLink v-if="route.name === 'user-title'">{{ blogTitle }}</NuxtLink>
       </section>
       <section>
         <!-- <img
