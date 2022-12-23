@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+definePageMeta({
+  middleware: 'authentication',
+})
 
 const route = useRoute()
 </script>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import BlogsContainer from '~~/components/dashboard/BlogsContainer.vue'
 definePageMeta({
-  //   layout: 'default',
-  title: 'hello',
-  //   middleware: 'auth',
+  middleware: 'authentication',
 })
 
 const layout = ref<'list' | 'grid'>('grid')

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h2 contenteditable="true">Edited</h2>
+  <h2>settings</h2>
 </template>
 
 <style lang="scss"></style>
