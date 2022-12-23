@@ -5,3 +5,7 @@
 body {
   @apply dark:bg-black bg-white;
 }
+
+.ds-border {
+  @apply border-gray-300 dark:border-neutral-700;
+}

@@ -47,6 +47,7 @@ watch(
 
 <template>
   <div
+    :class="{ hidden: route.name === 'new' }"
     class="border-b border-gray-300 bg-white dark:bg-black dark:border-neutral-700"
   >
     <nav class="sm:px-6 lg:px-8 mx-auto max-w-6xl">

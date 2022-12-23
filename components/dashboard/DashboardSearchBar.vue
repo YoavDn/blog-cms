@@ -55,8 +55,8 @@ function newBlogPost() {
         />
       </button>
     </div>
-    <button
-      @click="newBlogPost"
+    <nuxtLink
+      to="/new"
       class="group/new-post basis-2/12 h-10 dark:text-black dark:bg-white text-white dark:md:hover:text-white dark:md:hover:border-white dark:md:hover:bg-black md:hover:text-black md:hover:bg-white ease-in-out duration-150 md:hover:border-black border bg-black rounded-md text-start px-4 text-sm flex items-center justify-center md:justify-start"
     >
       <span class="pr-1 text-center">
@@ -66,7 +66,7 @@ function newBlogPost() {
         />
       </span>
       <span class="hidden md:block"> New Post </span>
-    </button>
+    </nuxtLink>
   </div>
 </template>
 
