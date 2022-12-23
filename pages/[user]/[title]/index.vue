@@ -7,20 +7,26 @@ const blogId = (route.params.title as string).split('-').pop()
 
 const { data: blog, refresh } = await useFetch(`/api/blog/${blogId}`)
 onMounted(() => refresh())
+
+//highlight js logic
 </script>
 
 <template>
   <div class="py-4">
     <main
       v-if="blog"
-      class="blog-container bg-white rounded-md p-4 shadow-sm border border-gray-300 dark:border-neutral-700 dark:bg-black dark:text-neutral-200"
+      class="blog-container p-4 shadow-sm dark:text-neutral-200"
     >
       <img v-if="blog.image" :src="blog.image" alt="" />
       <h2 class="font-bold text-3xl">{{ blog.title }}</h2>
-      <pre><code>
-        hello 
-        hello
-      </code></pre>
+      <pre
+        class="p-0"
+      ><code  v-highlight class="javascript rounded-md m-0 p-0" >const yoav = 'yoav'
+
+function foo() {
+  return 'hello world'
+}
+</code></pre>
     </main>
   </div>
 </template>
