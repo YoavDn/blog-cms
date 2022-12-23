@@ -3,14 +3,10 @@ import { useRoute } from 'vue-router'
 definePageMeta({
   middleware: 'authentication',
 })
-
 const route = useRoute()
+const blog = await useFetch(`/api/blog/:${route.params.id}`)
 </script>
 
-<template>
-  <p class="dark:text-white">
-    {{ $route.params.users }} - {{ $route.params.id }}
-  </p>
-</template>
+<template></template>
 
 <style lang="scss"></style>

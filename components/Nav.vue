@@ -25,8 +25,10 @@ watch(route, () => {
 </script>
 
 <template>
-  <div class="border-b border-gray-300 dark:border-neutral-700">
-    <nav class="sm:px-6 lg:px-8 relative mx-auto max-w-6xl">
+  <div
+    class="border-b border-gray-300 bg-white dark:bg-black dark:border-neutral-700"
+  >
+    <nav class="sm:px-6 lg:px-8 mx-auto max-w-6xl">
       <ul class="flex gap-5 dark:text-neutral-500 text-gray-500 text-sm">
         <li
           v-for="link in links"
@@ -35,7 +37,7 @@ watch(route, () => {
           :class="{ active: link.route === route.fullPath }"
         >
           <NuxtLink
-            class="p-3 sm:hover:bg-gray-100 rounded-md"
+            class="p-3 sm:hover:bg-gray-100 rounded-md sm:cursor-pointer"
             :to="link.route"
             >{{ link.name }}</NuxtLink
           >
@@ -47,7 +49,7 @@ watch(route, () => {
 
 <style scoped>
 .link {
-  @apply sm:cursor-pointer py-3 sm:hover:text-black;
+  @apply py-3 sm:hover:text-black;
 }
 .active {
   @apply border-b text-black dark:text-white border-black dark:border-white;

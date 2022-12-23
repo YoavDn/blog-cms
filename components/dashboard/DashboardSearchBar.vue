@@ -24,8 +24,9 @@ function newBlogPost() {
       />
       <span
         class="h-full pl-3 text-gray-400 bg-white dark:bg-black rounder-l-md border-l border-y rounded-l-md peer-focus/input:border-gray-800 dark:peer-focus/input:border-neutral-500 ease-in-out duration-150 dark:border-neutral-700"
-        ><Icon name="heroicons-solid:search" class="h-10 w-5 text-gray-400"
-      /></span>
+      >
+        <Icon name="heroicons-solid:search" class="h-10 w-5 text-gray-400" />
+      </span>
     </div>
     <div
       class="flex h-10 mx-2 border-collapse basis-1/12 rounded-md justify-center"
@@ -58,11 +59,12 @@ function newBlogPost() {
       @click="newBlogPost"
       class="group/new-post basis-2/12 h-10 dark:text-black dark:bg-white text-white dark:md:hover:text-white dark:md:hover:border-white dark:md:hover:bg-black md:hover:text-black md:hover:bg-white ease-in-out duration-150 md:hover:border-black border bg-black rounded-md text-start px-4 text-sm flex items-center justify-center md:justify-start"
     >
-      <span class="pr-1 text-center"
-        ><Icon
+      <span class="pr-1 text-center">
+        <Icon
           name="heroicons:plus"
           class="h-12 w-4 text-white dark:text-black md:group-hover/new-post:text-black dark:md:group-hover/new-post:text-white ease-in-out duration-150"
-      /></span>
+        />
+      </span>
       <span class="hidden md:block"> New Post </span>
     </button>
   </div>
