@@ -5,11 +5,6 @@ import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import 'highlight.js/styles/github-dark.css'
 
-// lowlight.registerLanguage('html', html)
-// lowlight.registerLanguage('css', css)
-// lowlight.registerLanguage('js', js)
-// lowlight.registerLanguage('ts', ts)
-
 const editor = useEditor({
   content: `<pre><code class="language-javascript">for (var i=1; i <= 20; i++)
 {
