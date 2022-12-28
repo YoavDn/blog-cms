@@ -24,7 +24,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'prose dark:prose-invert prose-sm sm:prose  lg:prose-lg xl:prose-2xl my-5 focus:outline-none',
+        'prose dark:prose-invert prose-sm sm:prose  w-full  lg:prose-lg xl:prose-2xl xxl-prose-4xl my-5 focus:outline-none',
     },
   },
 })
@@ -40,7 +40,7 @@ const editor = useEditor({
         Bold
       </button>
     </div> -->
-    <editor-content :editor="editor" />
+    <editor-content :editor="editor" class="w-full" />
   </main>
 </template>
 
@@ -52,7 +52,6 @@ const editor = useEditor({
 
   pre {
     background: #0d0d0d;
-
     // color: #fff;
     // font-family: 'JetBrainsMono', monospace;
     padding: 0.75rem 1rem;
@@ -64,58 +63,17 @@ const editor = useEditor({
       //   background: none;
       font-size: 0.8rem;
     }
+  }
+  blockquote {
+    @apply dark:border-neutral-700;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(#0d0d0d, 0.1);
+  }
 
-    //     .hljs-comment,
-    //     .hljs-quote {
-    //       color: #616161;
-    //     }
-
-    //     .hljs-variable,
-    //     .hljs-template-variable,
-    //     .hljs-attribute,
-    //     .hljs-tag,
-    //     .hljs-name,
-    //     .hljs-regexp,
-    //     .hljs-link,
-    //     .hljs-name,
-    //     .hljs-selector-id,
-    //     .hljs-selector-class {
-    //       color: #f98181;
-    //     }
-
-    //     .hljs-number,
-    //     .hljs-meta,
-    //     .hljs-built_in,
-    //     .hljs-builtin-name,
-    //     .hljs-literal,
-    //     .hljs-type,
-    //     .hljs-params {
-    //       color: #fbbc88;
-    //     }
-
-    //     .hljs-string,
-    //     .hljs-symbol,
-    //     .hljs-bullet {
-    //       color: #b9f18d;
-    //     }
-
-    //     .hljs-title,
-    //     .hljs-section {
-    //       color: #faf594;
-    //     }
-
-    //     .hljs-keyword,
-    //     .hljs-selector-tag {
-    //       color: #70cff8;
-    //     }
-
-    //     .hljs-emphasis {
-    //       font-style: italic;
-    //     }
-
-    //     .hljs-strong {
-    //       font-weight: 700;
-    //     }
+  hr {
+    border: none;
+    border-top: 2px solid rgba(#0d0d0d, 0.1);
+    margin: 2rem 0;
   }
 
   img {
