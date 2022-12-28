@@ -58,7 +58,7 @@ watch(
           :class="{ active: link.route === route.fullPath }"
         >
           <NuxtLink
-            class="p-3 sm:hover:bg-gray-100 rounded-md sm:cursor-pointer"
+            class="p-3 sm:hover:bg-gray-100 dark:sm:hover:text-black rounded-md sm:cursor-pointer"
             :to="link.route"
             >{{ link.name }}</NuxtLink
           >
