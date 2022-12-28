@@ -9,3 +9,9 @@ body {
 .ds-border {
   @apply border-gray-300 dark:border-neutral-700;
 }
+
+.ds-border-hover {
+  @apply sm:dark:hover:border-white;
+  @apply sm:hover:border-black;
+  @apply duration-150 ease-in;
+}

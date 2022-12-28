@@ -20,7 +20,7 @@ const onBlogPage = computed(() => {
   <header :class="{ 'border-b ds-border': route.name === 'new' }">
     <div class="px-4 pt-4 pb-2 sm:px-6 lg:px-8 relative mx-auto max-w-6xl">
       <main class="flex justify-between">
-        <section class="flex items-center gap-4">
+        <section class="flex items-center gap-4 text-black dark:text-white">
           <NuxtLink to="/" class="font-extrabold dark:text-white"
             >BLOGIFFY</NuxtLink
           >

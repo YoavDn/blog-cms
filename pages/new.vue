@@ -4,7 +4,7 @@ import TipTap from '~~/components/editor/TipTap.vue'
 
 <template>
   <div id="editor" class="editor p-4 rounded-md">
-    <TipTap />
+    <!-- <TipTap /> -->
   </div>
 </template>
 
