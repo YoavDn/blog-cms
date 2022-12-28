@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LinkModal from './LinkModal.vue'
 import { defineProps } from 'vue'
 import { BlogPost } from '.prisma/client'
 import { lowlight } from 'lowlight'
@@ -6,12 +7,15 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import Document from '@tiptap/extension-document'
 import Dropcursor from '@tiptap/extension-dropcursor'
 import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import 'highlight.js/styles/github-dark.css'
-import Bold from '@tiptap/extension-bold'
 
 const props = defineProps<{ blog: BlogPost }>()
+
+const isLinkModalOpen = ref<boolean>(false)
+const linkUrl = ref('')
 
 const editor = useEditor({
   content: props.blog.content,
@@ -21,6 +25,9 @@ const editor = useEditor({
       lowlight,
     }),
     Image,
+    Link.configure({
+      openOnClick: true,
+    }),
   ],
   editorProps: {
     attributes: {
@@ -29,6 +36,32 @@ const editor = useEditor({
     },
   },
 })
+
+function setLink() {
+  const previousUrl = editor.value!.getAttributes('link').href
+  const url = linkUrl.value
+
+  // cancelled
+  if (url === null) {
+    return
+  }
+
+  // empty
+  if (url === '') {
+    editor.value!.chain().focus().extendMarkRange('link').unsetLink().run()
+    return
+  }
+
+  // update link
+  editor
+    .value!.chain()
+    .focus()
+    .extendMarkRange('link')
+    .setLink({ href: url })
+    .run()
+
+  isLinkModalOpen.value = false
+}
 </script>
 
 <template>
@@ -50,12 +83,25 @@ const editor = useEditor({
       >
         <Icon name="ant-design:italic-outlined" class="menu-svg" />
       </button>
+      <button
+        @click="() => (isLinkModalOpen = true)"
+        :class="[{ 'is-active': editor.isActive('italic') }, 'menu-item']"
+      >
+        <Icon name="ph:link" class="menu-svg" />
+      </button>
+      <LinkModal
+        :isOpen="isLinkModalOpen"
+        v-model:linkUrl="linkUrl"
+        @closeLinkModal="() => (isLinkModalOpen = false)"
+        @openLinkModal="() => (isLinkModalOpen = true)"
+        @setLink="setLink"
+      />
     </div>
     <editor-content :editor="editor" class="w-full px-12" />
   </main>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .menu-svg {
   @apply h-8 w-8;
 }
@@ -64,6 +110,10 @@ const editor = useEditor({
 }
 .is-active {
   @apply dark:text-white text-black bg-gray-200 dark:bg-neutral-800;
+}
+
+a {
+  @apply text-blue-400;
 }
 
 .ProseMirror {
