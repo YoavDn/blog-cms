@@ -57,7 +57,7 @@ function handleKeyPress(e: KeyboardEvent) {
             >
               <input
                 type="text"
-                placeholder="link url.."
+                placeholder="Enter link url.."
                 class="dark:bg-black focus:outline-none dark:text-white text-xl"
                 :value="linkUrl"
                 @input="$emit('update:linkUrl', $event.target.value)"

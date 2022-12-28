@@ -87,7 +87,7 @@ function setLink() {
         ]"
         @click="editor!.chain().focus().toggleBold().run()"
       >
-        <Icon name="material-symbols:format-bold" class="menu-svg" />
+        <Icon name="ic:outline-format-bold" class="menu-svg" />
       </button>
       <button
         v-tooltip="'Italic'"
@@ -128,6 +128,16 @@ function setLink() {
       >
         <Icon name="material-symbols:format-list-numbered" class="menu-svg" />
       </button>
+      <button
+        @click="editor!.chain().focus().toggleHeading({ level: 2 }).run()"
+        v-tooltip="'Heading'"
+        :class="[
+          { 'is-active': editor.isActive('heading', { level: 2 }) },
+          'menu-item',
+        ]"
+      >
+        <Icon name="tabler:heading" class="menu-svg" />
+      </button>
     </div>
     <editor-content :editor="editor" class="w-full px-12" />
   </main>
@@ -138,10 +148,10 @@ function setLink() {
   @apply h-8 w-8;
 }
 .menu-item {
-  @apply p-2 sm:hover:text-black sm:dark:hover:text-white;
+  @apply sm:hover:text-black   sm:hover:bg-pink-800/20 sm:dark:hover:text-pink-500 m-1 p-1 rounded-md;
 }
 .is-active {
-  @apply dark:text-white text-black bg-gray-200 dark:bg-neutral-800;
+  @apply dark:text-pink-500 text-black;
 }
 
 a {
