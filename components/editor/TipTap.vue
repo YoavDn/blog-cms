@@ -34,6 +34,12 @@ const editor = useEditor({
   },
 })
 
+// toolbar
+
+function toggleBold() {
+  editor.value!.chain().focus().toggleBold().run()
+}
+
 function UpdatePreviousUrl() {
   isLinkModalOpen.value = true
   const previousUrl = editor.value!.getAttributes('link').href
@@ -105,6 +111,23 @@ function setLink() {
         @openLinkModal="() => (isLinkModalOpen = true)"
         @setLink="setLink"
       />
+      <button
+        @click="editor!.chain().focus().toggleBulletList().run()"
+        v-tooltip="'Bullet List'"
+        :class="[{ 'is-active': editor.isActive('bulletList') }, 'menu-item']"
+      >
+        <Icon
+          name="material-symbols:format-list-bulleted-rounded"
+          class="menu-svg"
+        />
+      </button>
+      <button
+        @click="editor!.chain().focus().toggleOrderedList().run()"
+        v-tooltip="'Ordered List'"
+        :class="[{ 'is-active': editor.isActive('orderedList') }, 'menu-item']"
+      >
+        <Icon name="material-symbols:format-list-numbered" class="menu-svg" />
+      </button>
     </div>
     <editor-content :editor="editor" class="w-full px-12" />
   </main>
