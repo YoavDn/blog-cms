@@ -4,8 +4,6 @@ import { defineProps } from 'vue'
 import { BlogPost } from '.prisma/client'
 import { lowlight } from 'lowlight'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
-import Document from '@tiptap/extension-document'
-import Dropcursor from '@tiptap/extension-dropcursor'
 import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
@@ -13,7 +11,6 @@ import StarterKit from '@tiptap/starter-kit'
 import 'highlight.js/styles/github-dark.css'
 
 const props = defineProps<{ blog: BlogPost }>()
-
 const isLinkModalOpen = ref<boolean>(false)
 const linkUrl = ref('')
 
@@ -76,12 +73,18 @@ function setLink() {
       class="flex sticky top-0 items-center z-30 px-10 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
     >
       <button
-        :class="[{ 'is-active': editor.isActive('bold') }, 'menu-item']"
+        v-tooltip="'Bold'"
+        title="Hi! I'm tooltip"
+        :class="[
+          { 'is-active': editor.isActive('bold') },
+          'menu-item group/btn',
+        ]"
         @click="editor!.chain().focus().toggleBold().run()"
       >
         <Icon name="material-symbols:format-bold" class="menu-svg" />
       </button>
       <button
+        v-tooltip="'Italic'"
         @click="editor!.chain().focus().toggleItalic().run()"
         :disabled="!editor.can().chain().focus().toggleItalic().run()"
         :class="[{ 'is-active': editor.isActive('italic') }, 'menu-item']"
@@ -89,6 +92,7 @@ function setLink() {
         <Icon name="ant-design:italic-outlined" class="menu-svg" />
       </button>
       <button
+        v-tooltip="'Add link'"
         @click="UpdatePreviousUrl"
         :class="[{ 'is-active': editor.isActive('link') }, 'menu-item']"
       >
