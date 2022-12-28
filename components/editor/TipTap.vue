@@ -32,7 +32,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'prose dark:prose-invert md:prose-md sm:prose   lg:prose-lg xl:prose-2xl xxl-prose-4xl my-5 focus:outline-none',
+        'dark:prose-invert  sm:prose  lg:prose-xl  my-5 focus:outline-none',
     },
   },
 })
@@ -73,7 +73,7 @@ function setLink() {
   <main class="relative">
     <div
       v-if="editor"
-      class="flex sticky top-5 items-center z-30 px-12 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
+      class="flex sticky top-0 items-center z-30 px-12 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
     >
       <button
         :class="[{ 'is-active': editor.isActive('bold') }, 'menu-item']"

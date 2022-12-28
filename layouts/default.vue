@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
 
-console.log(route.name)
 const bgStyle = computed(() => {
   if (route.name === 'user-title' || route.name === 'user-title-edit') {
     return 'bg-gray-50 dark:bg-black min-h-screen'
