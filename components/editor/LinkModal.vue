@@ -7,9 +7,21 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue'
+import { emit } from 'process'
 
 defineProps<{ isOpen: boolean; linkUrl: string }>()
-defineEmits(['update:linkUrl', 'closeLinkModal', 'openLinkModal', 'setLink'])
+const emits = defineEmits<{
+  (e: 'update:linkUrl'): void
+  (e: 'closeLinkModal'): void
+  (e: 'openLinkModal'): void
+  (e: 'setLink'): void
+}>()
+
+function handleKeyPress(e: KeyboardEvent) {
+  //   if (e.key !== 'Enter') return
+  //   console.log(e.key)
+  //   emit('setLink')
+}
 </script>
 
 <template>
@@ -46,7 +58,7 @@ defineEmits(['update:linkUrl', 'closeLinkModal', 'openLinkModal', 'setLink'])
               <input
                 type="text"
                 placeholder="link url.."
-                class="dark:bg-black focus:outline-none dark:text-white"
+                class="dark:bg-black focus:outline-none dark:text-white text-xl"
                 :value="linkUrl"
                 @input="$emit('update:linkUrl', $event.target.value)"
               />
@@ -54,7 +66,7 @@ defineEmits(['update:linkUrl', 'closeLinkModal', 'openLinkModal', 'setLink'])
               <div>
                 <button
                   type="button"
-                  class="dark:text-white"
+                  class="dark:text-black text-white bg-black border ds-border dark:bg-white p-2 rounded-md"
                   @click="$emit('setLink')"
                 >
                   Set Link

@@ -32,7 +32,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'dark:prose-invert  sm:prose  lg:prose-xl  my-5 focus:outline-none',
+        'dark:prose-invert prose prose-neutral leading lg:prose-lg  my-5 focus:outline-none',
     },
   },
 })
@@ -73,7 +73,7 @@ function setLink() {
   <main class="relative">
     <div
       v-if="editor"
-      class="flex sticky top-0 items-center z-30 px-12 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
+      class="flex sticky top-0 items-center z-30 px-10 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
     >
       <button
         :class="[{ 'is-active': editor.isActive('bold') }, 'menu-item']"
@@ -162,19 +162,6 @@ a {
   img {
     width: 100%;
     object-fit: cover;
-  }
-
-  h1 {
-    @apply text-4xl;
-  }
-  h2 {
-    @apply text-3xl;
-  }
-  h3 {
-    @apply text-2xl;
-  }
-  h4 {
-    @apply text-xl;
   }
 }
 </style>
