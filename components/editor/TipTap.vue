@@ -37,8 +37,13 @@ const editor = useEditor({
   },
 })
 
-function setLink() {
+function UpdatePreviousUrl() {
+  isLinkModalOpen.value = true
   const previousUrl = editor.value!.getAttributes('link').href
+  linkUrl.value = previousUrl
+}
+
+function setLink() {
   const url = linkUrl.value
 
   // cancelled
@@ -84,8 +89,8 @@ function setLink() {
         <Icon name="ant-design:italic-outlined" class="menu-svg" />
       </button>
       <button
-        @click="() => (isLinkModalOpen = true)"
-        :class="[{ 'is-active': editor.isActive('italic') }, 'menu-item']"
+        @click="UpdatePreviousUrl"
+        :class="[{ 'is-active': editor.isActive('link') }, 'menu-item']"
       >
         <Icon name="ph:link" class="menu-svg" />
       </button>
