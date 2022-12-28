@@ -16,9 +16,9 @@ console.log(blog.value)
 <template>
   <div
     v-if="blog"
-    class="p-5 px-12 bg-white dark:bg-neutral-900 mt-5 rounded-md border ds-border"
+    class="bg-white prose m-auto md:prose-md lg:prose-lg xl:prose-xl dark:bg-neutral-900 rounded-md border ds-border"
   >
-    <div class="blog-title flex flex-col gap-5">
+    <div class="px-12 pt-5 blog-title flex flex-col gap-5">
       <input type="file" id="img-file" name="img-file" class="hidden" />
       <label
         for="img-file"

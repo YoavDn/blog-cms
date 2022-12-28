@@ -9,6 +9,7 @@ import Image from '@tiptap/extension-image'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import 'highlight.js/styles/github-dark.css'
+import Bold from '@tiptap/extension-bold'
 
 const props = defineProps<{ blog: BlogPost }>()
 
@@ -24,27 +25,47 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'prose dark:prose-invert prose-sm sm:prose  w-full  lg:prose-lg xl:prose-2xl xxl-prose-4xl my-5 focus:outline-none',
+        'prose dark:prose-invert md:prose-md sm:prose   lg:prose-lg xl:prose-2xl xxl-prose-4xl my-5 focus:outline-none',
     },
   },
 })
 </script>
 
 <template>
-  <main class="relative p-2">
-    <!-- <div class="flex sticky top-5 m-5 z-30 p-3 rounded-md bg-white shadow-md">
+  <main class="relative">
+    <div
+      v-if="editor"
+      class="flex sticky top-5 items-center z-30 px-12 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
+    >
       <button
-        :class="{ 'font-bold underline': editor.isActive('bold') }"
-        @click="editor.chain().focus().toggleBold().run()"
+        :class="[{ 'is-active': editor.isActive('bold') }, 'menu-item']"
+        @click="editor!.chain().focus().toggleBold().run()"
       >
-        Bold
+        <Icon name="material-symbols:format-bold" class="menu-svg" />
       </button>
-    </div> -->
-    <editor-content :editor="editor" class="w-full" />
+      <button
+        @click="editor!.chain().focus().toggleItalic().run()"
+        :disabled="!editor.can().chain().focus().toggleItalic().run()"
+        :class="[{ 'is-active': editor.isActive('italic') }, 'menu-item']"
+      >
+        <Icon name="ant-design:italic-outlined" class="menu-svg" />
+      </button>
+    </div>
+    <editor-content :editor="editor" class="w-full px-12" />
   </main>
 </template>
 
 <style lang="scss">
+.menu-svg {
+  @apply h-8 w-8;
+}
+.menu-item {
+  @apply p-2 sm:hover:text-black sm:dark:hover:text-white;
+}
+.is-active {
+  @apply dark:text-white text-black bg-gray-200 dark:bg-neutral-800;
+}
+
 .ProseMirror {
   > * + * {
     margin-top: 0.75em;
@@ -52,17 +73,24 @@ const editor = useEditor({
 
   pre {
     background: #0d0d0d;
+    overflow-x: scroll;
     // color: #fff;
     // font-family: 'JetBrainsMono', monospace;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
 
     code {
+      background-color: none;
       color: inherit;
-      padding: 0;
-      //   background: none;
+      padding: 1em;
+
       font-size: 0.8rem;
     }
+  }
+
+  code:not(pre *) {
+    @apply px-2 py-1 rounded-[4px]  prose dark:prose-invert bg-gray-100 dark:bg-neutral-800;
+    @apply font-extralight font-mono;
   }
   blockquote {
     @apply dark:border-neutral-700;

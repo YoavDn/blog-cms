@@ -16,7 +16,7 @@ const bgStyle = computed(() => {
     <DashboardHeader />
     <Nav />
     <main :class="bgStyle">
-      <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="relative mx-auto py-5 max-w-6xl px-4 sm:px-6 lg:px-8">
         <slot />
       </div>
     </main>
