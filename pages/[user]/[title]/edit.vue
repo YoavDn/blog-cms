@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { useStorage } from '@vueuse/core'
 import TipTap from '~~/components/editor/TipTap.vue'
+import { BlogPost } from '.prisma/client'
+
+const isWarningModalOpen = ref(false)
 
 definePageMeta({
   middleware: 'authentication',
@@ -11,32 +15,39 @@ const id = route.fullPath.split('/')[2].split('-')[1]
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
 onMounted(() => refresh())
 console.log(blog.value)
+
+function updateBlog(html: string) {
+  useFetch(`/api/blog/${id}`, {
+    method: 'put',
+    body: { content: html },
+  })
+}
 </script>
 
 <template>
   <div
     v-if="blog"
-    class="bg-white prose m-auto md:prose-md lg:prose-lg xl:prose-xl dark:bg-neutral-900 rounded-md border ds-border"
+    class="prose md:prose-md lg:prose-lg xl:prose-xl ds-border m-auto rounded-md border bg-white dark:bg-neutral-900"
   >
     <div class="cover-image">
       <input type="file" id="img-file" name="img-file" class="hidden" />
       <label
         for="img-file"
-        class="sm:cursor-pointer text-sm justify-center px-12 flex items-center gap-2 p-2 bg-gray-50 dark:bg-neutral-900 text-center rounded-t-md text-neutral-500 sm:hover:text-black dark:sm:hover:text-white"
+        class="flex items-center justify-center gap-2 rounded-t-md bg-gray-50 p-2 px-12 text-center text-sm text-neutral-500 dark:bg-neutral-900 sm:cursor-pointer sm:hover:text-black dark:sm:hover:text-white"
       >
         <span> <Icon name="ion:image-outline" class="h-5 w-5" /></span> Add a
         cover image</label
       >
     </div>
-    <div class="px-12 pt-2 blog-title flex flex-col gap-5">
+    <div class="blog-title flex flex-col gap-5 px-12 pt-2">
       <textarea
-        class="text-3xl lg:text-5xl w-full focus:outline-none dark:bg-neutral-900 dark:text-white text-black placeholder:font-bold placeholder:text-neutral-500 font-bold"
+        class="w-full text-3xl font-bold text-black placeholder:font-bold placeholder:text-neutral-500 focus:outline-none dark:bg-neutral-900 dark:text-white lg:text-5xl"
         placeholder="Post title here..."
         rows="3"
         v-model="blog.title"
       />
     </div>
-    <TipTap v-if="blog" :blog="blog" />
+    <TipTap v-if="blog" :blog="blog" @update-blog="updateBlog" />
   </div>
 </template>
 

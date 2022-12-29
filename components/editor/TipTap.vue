@@ -9,8 +9,12 @@ import Link from '@tiptap/extension-link'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import 'highlight.js/styles/github-dark.css'
+import { emit } from 'process'
 
 const props = defineProps<{ blog: BlogPost }>()
+const emit = defineEmits<{
+  (e: 'updateBlog', html: string): void
+}>()
 const isLinkModalOpen = ref<boolean>(false)
 const linkUrl = ref('')
 
@@ -32,6 +36,11 @@ const editor = useEditor({
         'dark:prose-invert prose prose-neutral leading lg:prose-lg  my-5 focus:outline-none',
     },
   },
+})
+
+onBeforeRouteLeave(() => {
+  if (!editor.value) return
+  emit('updateBlog', editor.value.getHTML())
 })
 
 // toolbar
@@ -76,7 +85,7 @@ function setLink() {
   <main class="relative">
     <div
       v-if="editor"
-      class="flex sticky top-0 items-center z-30 px-10 dark:bg-black bg-gray-50 border-y ds-border text-gray-500"
+      class="ds-border sticky top-0 z-30 flex items-center border-y bg-gray-50 px-10 text-gray-500 dark:bg-black"
     >
       <button
         v-tooltip="'Bold'"
@@ -148,10 +157,10 @@ function setLink() {
   @apply h-8 w-8;
 }
 .menu-item {
-  @apply sm:hover:text-black   sm:hover:bg-pink-800/20 sm:dark:hover:text-pink-500 m-1 p-1 rounded-md;
+  @apply m-1   rounded-md p-1 sm:hover:bg-pink-800/20 sm:hover:text-black sm:dark:hover:text-pink-500;
 }
 .is-active {
-  @apply dark:text-pink-500 text-black;
+  @apply text-black dark:text-pink-500;
 }
 
 a {
@@ -181,8 +190,8 @@ a {
   }
 
   code:not(pre *) {
-    @apply px-2 py-1 rounded-[4px]  prose dark:prose-invert bg-gray-100 dark:bg-neutral-800;
-    @apply font-extralight font-mono;
+    @apply prose dark:prose-invert rounded-[4px]  bg-gray-100 px-2 py-1 dark:bg-neutral-800;
+    @apply font-mono font-extralight;
   }
   blockquote {
     @apply dark:border-neutral-700;
