@@ -152,10 +152,25 @@ function setLink() {
       >
         <Icon name="tabler:heading" class="menu-svg" />
       </button>
+      <button
+        v-tooltip="'code'"
+        @click="editor!.chain().focus().toggleCode().run()"
+        :disabled="!editor.can().chain().focus().toggleCode().run()"
+        :class="[{ 'is-active': editor.isActive('code') }, 'menu-item']"
+      >
+        <Icon name="material-symbols:code" class="menu-svg" />
+      </button>
+      <button
+        v-tooltip="'Code Block'"
+        @click="editor!.chain().focus().toggleCodeBlock().run()"
+        :class="[{ 'is-active': editor.isActive('codeBlock') }, 'menu-item']"
+      >
+        <Icon name="material-symbols:code-blocks" class="menu-svg" />
+      </button>
     </div>
     <editor-content :editor="editor" class="w-full px-12" />
     <div
-      class="ds-border m-auto mt-4 space-x-4 rounded-b-md border-t bg-gray-50 p-4 dark:bg-neutral-900"
+      class="ds-border m-auto mt-4 space-x-4 rounded-b-md border-t bg-gray-50 p-4 text-sm dark:bg-neutral-900"
     >
       <button
         class="rounded-md border border-fuchsia-500 bg-fuchsia-500 p-2 px-5 text-white duration-150 ease-in sm:hover:bg-fuchsia-500/0 sm:hover:text-fuchsia-500"
@@ -177,7 +192,7 @@ function setLink() {
   @apply h-8 w-8;
 }
 .menu-item {
-  @apply m-1  rounded-md p-1 sm:hover:bg-pink-800/20 sm:hover:text-black sm:dark:hover:text-fuchsia-500;
+  @apply m-1  rounded-md p-1 sm:hover:bg-pink-800/20  sm:hover:text-black sm:dark:hover:text-fuchsia-500;
 }
 .is-active {
   @apply text-black dark:text-fuchsia-500;
