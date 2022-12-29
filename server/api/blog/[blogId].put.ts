@@ -15,6 +15,7 @@ export default defineEventHandler(async event => {
     },
     data: {
       content: body.content,
+      title: body.title,
     },
   })
 

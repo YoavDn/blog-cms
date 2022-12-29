@@ -11,15 +11,18 @@ definePageMeta({
 })
 
 const route = useRoute()
-const id = route.fullPath.split('/')[2].split('-')[1]
+const id = route.fullPath.split('/')[2].split('-')[
+  route.fullPath.split('/')[2].split('-').length - 1
+]
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
 onMounted(() => refresh())
 console.log(blog.value)
 
 function updateBlog(html: string) {
+  if (!blog.value) return
   useFetch(`/api/blog/${id}`, {
     method: 'put',
-    body: { content: html },
+    body: { content: html, title: blog.value.title },
   })
 }
 </script>
