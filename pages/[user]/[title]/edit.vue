@@ -36,7 +36,7 @@ function updateBlog(html: string) {
       <input type="file" id="img-file" name="img-file" class="hidden" />
       <label
         for="img-file"
-        class="flex items-center justify-center gap-2 rounded-t-md bg-gray-50 p-2 px-12 text-center text-sm text-neutral-500 dark:bg-neutral-900 sm:cursor-pointer sm:hover:text-black dark:sm:hover:text-white"
+        class="flex items-center justify-center gap-2 rounded-t-md p-2 px-12 text-center text-sm text-neutral-500 dark:bg-neutral-900 sm:cursor-pointer sm:hover:text-black dark:sm:hover:text-white"
       >
         <span> <Icon name="ion:image-outline" class="h-5 w-5" /></span> Add a
         cover image</label
@@ -51,6 +51,16 @@ function updateBlog(html: string) {
       />
     </div>
     <TipTap v-if="blog" :blog="blog" @update-blog="updateBlog" />
+  </div>
+  <div class="prose m-auto mt-4 space-x-4">
+    <button
+      class="rounded-md border border-fuchsia-500 bg-fuchsia-500 p-2 px-5 text-white duration-150 ease-in sm:hover:bg-fuchsia-500/0 sm:hover:text-fuchsia-500"
+    >
+      Publish
+    </button>
+    <button class="ds-border rounded-md border p-2 px-5 dark:text-white">
+      Save Draft
+    </button>
   </div>
 </template>
 

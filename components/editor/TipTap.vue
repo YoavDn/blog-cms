@@ -157,10 +157,10 @@ function setLink() {
   @apply h-8 w-8;
 }
 .menu-item {
-  @apply m-1   rounded-md p-1 sm:hover:bg-pink-800/20 sm:hover:text-black sm:dark:hover:text-pink-500;
+  @apply m-1  rounded-md p-1 sm:hover:bg-pink-800/20 sm:hover:text-black sm:dark:hover:text-fuchsia-500;
 }
 .is-active {
-  @apply text-black dark:text-pink-500;
+  @apply text-black dark:text-fuchsia-500;
 }
 
 a {

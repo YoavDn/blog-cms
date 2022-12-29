@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import 'highlight.js/styles/github-dark.css'
 definePageMeta({
   middleware: 'authentication',
 })
@@ -15,19 +16,9 @@ onMounted(() => refresh())
   <div class="py-4">
     <main
       v-if="blog"
-      class="blog-container p-4 shadow-sm dark:text-neutral-200"
-    >
-      <img v-if="blog.image" :src="blog.image" alt="" />
-      <h2 class="font-bold text-3xl">{{ blog.title }}</h2>
-      <pre
-        class="p-0"
-      ><code  v-highlight class="javascript rounded-md m-0 p-0" >const yoav = 'yoav'
-
-function foo() {
-  return 'hello world'
-}
-</code></pre>
-    </main>
+      v-html="blog.content"
+      class="blog-container prose prose-neutral dark:prose-invert p-4 shadow-sm dark:text-neutral-200"
+    ></main>
   </div>
 </template>
 
