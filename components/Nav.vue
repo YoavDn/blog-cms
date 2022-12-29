@@ -47,10 +47,10 @@ watch(
 
 <template>
   <div
-    class="border-b border-gray-300 bg-white dark:bg-black dark:border-neutral-700"
+    class="border-b border-gray-300 bg-white dark:border-neutral-700 dark:bg-black"
   >
-    <nav class="sm:px-6 lg:px-8 mx-auto max-w-6xl">
-      <ul class="flex gap-5 dark:text-neutral-500 text-gray-500 text-sm">
+    <nav class="mx-auto max-w-6xl sm:px-6 lg:px-8">
+      <ul class="flex gap-5 text-sm text-gray-500 dark:text-neutral-500">
         <li
           v-for="link in links"
           :key="link.route"
@@ -58,7 +58,7 @@ watch(
           :class="{ active: link.route === route.fullPath }"
         >
           <NuxtLink
-            class="p-3 sm:hover:bg-gray-100 dark:sm:hover:text-black rounded-md sm:cursor-pointer"
+            class="rounded-md p-3 sm:cursor-pointer sm:hover:bg-gray-100/25 sm:hover:text-white"
             :to="link.route"
             >{{ link.name }}</NuxtLink
           >
@@ -73,6 +73,6 @@ watch(
   @apply py-3 sm:hover:text-black;
 }
 .active {
-  @apply border-b text-black dark:text-white border-black dark:border-white;
+  @apply border-b border-black text-black dark:border-white dark:text-white;
 }
 </style>

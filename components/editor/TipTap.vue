@@ -33,10 +33,15 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'dark:prose-invert prose prose-neutral leading  lg:prose-lg  my-5 focus:outline-none',
+        'dark:prose-invert prose prose-neutral  lg:prose-lg  my-5 focus:outline-none',
     },
   },
 })
+
+onMounted(() => {
+  editor.value?.chain().focus()
+})
+
 // TODO: figure out if this is the way to go
 
 // onBeforeRouteLeave(() => {

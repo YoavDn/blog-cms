@@ -30,7 +30,7 @@ function updateBlog(html: string) {
 <template>
   <div
     v-if="blog"
-    class="prose md:prose-md lg:prose-lg xl:prose-xl ds-border m-auto rounded-md border bg-white dark:bg-neutral-900"
+    class="prose md:prose-md lg:prose-lg xl:prose-xl ds-border m-auto max-h-[85vh] overflow-auto rounded-md border bg-white dark:bg-neutral-900"
   >
     <div class="cover-image">
       <input type="file" id="img-file" name="img-file" class="hidden" />
