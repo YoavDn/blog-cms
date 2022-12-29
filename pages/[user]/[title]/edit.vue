@@ -52,16 +52,7 @@ function updateBlog(html: string) {
     </div>
     <TipTap v-if="blog" :blog="blog" @update-blog="updateBlog" />
   </div>
-  <div class="prose m-auto mt-4 space-x-4">
-    <button
-      class="rounded-md border border-fuchsia-500 bg-fuchsia-500 p-2 px-5 text-white duration-150 ease-in sm:hover:bg-fuchsia-500/0 sm:hover:text-fuchsia-500"
-    >
-      Publish
-    </button>
-    <button class="ds-border rounded-md border p-2 px-5 dark:text-white">
-      Save Draft
-    </button>
-  </div>
+  <div class="prose m-auto mt-4 space-x-4"></div>
 </template>
 
 <style lang="scss"></style>

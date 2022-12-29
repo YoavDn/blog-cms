@@ -33,18 +33,18 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'dark:prose-invert prose prose-neutral leading lg:prose-lg  my-5 focus:outline-none',
+        'dark:prose-invert prose prose-neutral leading  lg:prose-lg  my-5 focus:outline-none',
     },
   },
 })
+// TODO: figure out if this is the way to go
 
-onBeforeRouteLeave(() => {
-  if (!editor.value) return
-  emit('updateBlog', editor.value.getHTML())
-})
+// onBeforeRouteLeave(() => {
+//   if (!editor.value) return
+//   emit('updateBlog', editor.value.getHTML())
+// })
 
 // toolbar
-
 function toggleBold() {
   editor.value!.chain().focus().toggleBold().run()
 }
@@ -149,6 +149,21 @@ function setLink() {
       </button>
     </div>
     <editor-content :editor="editor" class="w-full px-12" />
+    <div
+      class="ds-border m-auto mt-4 space-x-4 rounded-b-md border-t bg-gray-50 p-4 dark:bg-neutral-900"
+    >
+      <button
+        class="rounded-md border border-fuchsia-500 bg-fuchsia-500 p-2 px-5 text-white duration-150 ease-in sm:hover:bg-fuchsia-500/0 sm:hover:text-fuchsia-500"
+      >
+        Publish
+      </button>
+      <button
+        @click="$emit('updateBlog', editor?.getHTML())"
+        class="ds-border rounded-md border bg-white p-2 px-5 dark:bg-black dark:text-white"
+      >
+        Save Draft
+      </button>
+    </div>
   </main>
 </template>
 

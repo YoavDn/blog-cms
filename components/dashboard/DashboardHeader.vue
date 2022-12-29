@@ -8,7 +8,7 @@ const blogTitle = computed(() => {
     .split('-')
     .slice(0, route.path.split('-').length - 1)
     .join()
-  return routeWithoutId.split('/')[2]
+  return routeWithoutId.split('/')[2].split(',').join('-').toLowerCase()
 })
 
 const onBlogPage = computed(() => {
@@ -17,15 +17,15 @@ const onBlogPage = computed(() => {
 </script>
 
 <template>
-  <header :class="{ 'border-b ds-border': route.name === 'new' }">
-    <div class="px-4 pt-4 pb-2 sm:px-6 lg:px-8 relative mx-auto max-w-6xl">
+  <header :class="{ 'ds-border border-b': route.name === 'new' }">
+    <div class="relative mx-auto max-w-6xl px-4 pt-4 pb-2 sm:px-6 lg:px-8">
       <main class="flex justify-between">
         <section class="flex items-center gap-4 text-black dark:text-white">
           <NuxtLink to="/" class="font-extrabold dark:text-white"
             >BLOGIFFY</NuxtLink
           >
           <h1
-            class="text-2xl text-gray-500 dark:text-neutral-700 font-extralight"
+            class="text-2xl font-extralight text-gray-500 dark:text-neutral-700"
           >
             /
           </h1>
@@ -36,7 +36,7 @@ const onBlogPage = computed(() => {
 
           <h1
             v-if="onBlogPage"
-            class="text-2xl text-gray-500 dark:text-neutral-700 font-extralight"
+            class="text-2xl font-extralight text-gray-500 dark:text-neutral-700"
           >
             /
           </h1>

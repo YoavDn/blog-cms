@@ -13,11 +13,11 @@ onMounted(() => refresh())
 </script>
 
 <template>
-  <div class="py-4">
+  <div class="">
     <main
       v-if="blog"
       v-html="blog.content"
-      class="blog-container prose prose-neutral dark:prose-invert p-4 shadow-sm dark:text-neutral-200"
+      class="blog-container prose prose-neutral ds-border dark:prose-invert lg:prose-xl m-auto rounded-md border bg-white p-12 py-4 shadow-sm dark:bg-neutral-900 dark:text-neutral-200"
     ></main>
   </div>
 </template>

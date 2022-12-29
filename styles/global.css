@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  @apply dark:bg-black bg-white;
+  @apply bg-white dark:bg-black;
 }
 
 .ds-border {

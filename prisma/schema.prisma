@@ -23,14 +23,6 @@ model User {
   sessions      Session[]
 }
 
-model Star {
-  id              Int       @default(autoincrement()) @id
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  name            String    @db.VarChar(255)
-  constellation   String    @db.VarChar(255)
-}
-
 model Account {
   id                 String  @id @default(cuid())
   userId             Int
@@ -69,13 +61,21 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+
+  model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts BlogPost[]
+}
+   
 model BlogPost {
     id             Int       @id @default(autoincrement())
     userId         Int 
     createdAt      DateTime  @default(now()) @db.Timestamp(6)
     updatedAt      DateTime  @updatedAt
-    title          String    @db.VarChar(255) @default("Untitled")
-    content        String?   
+    title          String?   @db.VarChar(255) 
+    content        String?   @db.LongText
+    tags           Tag[]   
     published      Boolean   @default(false)
     publishedAt    DateTime?
     image          String?   @db.VarChar(255)
@@ -84,3 +84,4 @@ model BlogPost {
 
     @@index([userId])
 }
+
