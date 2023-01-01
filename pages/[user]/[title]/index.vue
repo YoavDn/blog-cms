@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useBlogStore } from '~~/stores/blogStore'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)

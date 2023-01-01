@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Tag } from '.prisma/client'
+import TagsCombobox from '~~/components/editor/TagsCombobox.vue'
 import { useRoute } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 import TipTap from '~~/components/editor/TipTap.vue'
@@ -9,6 +11,9 @@ const isWarningModalOpen = ref(false)
 definePageMeta({
   middleware: 'authentication',
 })
+
+const tagInput = ref('')
+const { data: tags } = await useFetch(`/api/tag`)
 
 const route = useRoute()
 const id = route.fullPath.split('/')[2].split('-')[
@@ -24,9 +29,13 @@ function updateBlog(html: string) {
   })
 }
 
-const searchTags = useDebounceFn((e: any) => {
-  console.log(e.target.value)
-}, 400)
+const searchTags = useDebounceFn(async (query: string) => {
+  console.log(query)
+  const { data: searchedTags } = await useFetch(`/api/tag`, {
+    query: { name: query },
+  })
+  tags.value = searchedTags.value
+}, 300)
 </script>
 
 <template>
@@ -50,13 +59,14 @@ const searchTags = useDebounceFn((e: any) => {
         placeholder="Post title here..."
         v-model="blog.title"
       />
-
-      <input
-        @input="searchTags"
-        type="text"
-        class="ds-border my-3 rounded-md border bg-gray-50 p-1 px-4 outline-none duration-150 ease-in placeholder:text-sm placeholder:italic focus:border-gray-800 dark:bg-black dark:focus:border-neutral-500"
-        placeholder="Add tags.."
-      />
+      <div>
+        <TagsCombobox
+          v-if="tags"
+          :tags="tags"
+          :query="tagInput"
+          @updateTags="searchTags"
+        />
+      </div>
     </div>
     <TipTap v-if="blog" :blog="blog" @update-blog="updateBlog" />
   </div>
