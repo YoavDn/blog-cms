@@ -31,7 +31,7 @@ async function newBlogPost() {
       <input
         type="text"
         placeholder="Search.."
-        class="peer/input order-1 h-full w-full rounded-r-md border-r border-t border-b border-gray-200 bg-white px-3 outline-none duration-150 ease-in-out placeholder:text-sm placeholder:font-light focus:border-gray-800 dark:border-neutral-700 dark:bg-black dark:text-white dark:focus:border-neutral-500"
+        class="peer/input order-1 h-full w-full rounded-r-md border-y border-r border-gray-200 bg-white px-3 outline-none duration-150 ease-in-out placeholder:text-sm placeholder:font-light focus:border-gray-800 dark:border-neutral-700 dark:bg-black dark:text-white dark:focus:border-neutral-500"
       />
       <span
         class="rounder-l-md h-full rounded-l-md border-y border-l bg-white pl-3 text-gray-400 duration-150 ease-in-out peer-focus/input:border-gray-800 dark:border-neutral-700 dark:bg-black dark:peer-focus/input:border-neutral-500"

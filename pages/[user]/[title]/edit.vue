@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router'
 import { useStorage } from '@vueuse/core'
 import TipTap from '~~/components/editor/TipTap.vue'
 import { BlogPost } from '.prisma/client'
-
+import { useDebounceFn } from '@vueuse/core'
 const isWarningModalOpen = ref(false)
 
 definePageMeta({
@@ -23,6 +23,10 @@ function updateBlog(html: string) {
     body: { content: html, title: blog.value.title },
   })
 }
+
+const searchTags = useDebounceFn((e: any) => {
+  console.log(e.target.value)
+}, 400)
 </script>
 
 <template>
@@ -44,8 +48,14 @@ function updateBlog(html: string) {
       <textarea
         class="w-full text-3xl font-bold text-black placeholder:font-bold placeholder:text-neutral-500 focus:outline-none dark:bg-neutral-900 dark:text-white lg:text-5xl"
         placeholder="Post title here..."
-        rows="3"
         v-model="blog.title"
+      />
+
+      <input
+        @input="searchTags"
+        type="text"
+        class="ds-border my-3 rounded-md border bg-gray-50 p-1 px-4 outline-none duration-150 ease-in placeholder:text-sm placeholder:italic focus:border-gray-800 dark:bg-black dark:focus:border-neutral-500"
+        placeholder="Add tags.."
       />
     </div>
     <TipTap v-if="blog" :blog="blog" @update-blog="updateBlog" />
