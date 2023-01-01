@@ -4,13 +4,14 @@ import { BlogPost } from '@prisma/client'
 export default defineEventHandler(async event => {
   try {
     const body = await readBody(event)
+    const { isNew, tag, name } = body.options
 
     const blogPost = await prisma.blogPost.update({
       where: {
         id: Number(event.context.params.blogId),
       },
       data: {
-        tags: { create: [{ name: body.name }] },
+        tags: isNew ? { create: { name } } : { connect: [{ id: tag.id }] },
       },
     })
 

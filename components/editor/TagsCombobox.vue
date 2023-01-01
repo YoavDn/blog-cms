@@ -1,12 +1,23 @@
 <script setup lang="ts">
 import type { Tag } from '.prisma/client'
+
 import {
   Combobox,
   ComboboxInput,
   ComboboxOptions,
   ComboboxOption,
 } from '@headlessui/vue'
-const emit = defineEmits<{ (e: 'updateTags', query: string): void }>()
+
+type addTagType = {
+  isNew: boolean
+  tag?: Tag
+  name?: string
+}
+
+const emit = defineEmits<{
+  (e: 'updateTags', query: string): void
+  (e: 'addTag', options: addTagType): void
+}>()
 const props = defineProps<{
   tags: Tag[]
 }>()
@@ -26,7 +37,6 @@ function updateTags(event: any) {
         <ComboboxInput
           as="input"
           v-model="query"
-          :displayValue="tag => tag.name"
           class="w-full py-2 px-4 text-sm outline-none placeholder:italic"
           placeholder="Add tags.."
           @change="updateTags"
@@ -36,6 +46,7 @@ function updateTags(event: any) {
         class="ds-border absolute top-4 z-40 w-full rounded-md border bg-white p-2 shadow-sm"
       >
         <div
+          @click="$emit('addTag', { isNew: true, name: query })"
           v-if="tags.length === 0 && query !== ''"
           class="cursor-default select-none py-2 px-4 text-gray-700"
         >
@@ -49,6 +60,7 @@ function updateTags(event: any) {
           :value="tag.name"
           as="prop"
           v-slot="{ selected, active }"
+          @click="$emit('addTag', { isNew: false, tag })"
         >
           {{ tag.name }}
         </ComboboxOption>

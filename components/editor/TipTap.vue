@@ -33,7 +33,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        'dark:prose-invert prose prose-neutral  lg:prose-lg  my-5 focus:outline-none',
+        'dark:prose-invert prose prose-neutral  min-h-[40vh] lg:prose-lg  my-5 focus:outline-none',
     },
   },
 })

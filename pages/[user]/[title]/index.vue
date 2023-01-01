@@ -39,6 +39,11 @@ const editedAt = computed<string>(() => {
       <div class="flex">
         <p class="text-sm">Edited: {{ editedAt }}</p>
       </div>
+      <div
+        class="flex list-none space-x-3 text-sm underline decoration-rose-200"
+      >
+        <p v-for="tag in blog.tags" :key="tag.id">#{{ tag.name }}</p>
+      </div>
     </header>
     <main v-html="blog.content"></main>
   </div>

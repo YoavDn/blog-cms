@@ -8,6 +8,12 @@ import { BlogPost } from '.prisma/client'
 import { useDebounceFn } from '@vueuse/core'
 const isWarningModalOpen = ref(false)
 
+type addTagType = {
+  isNew: boolean
+  tag?: Tag
+  name?: string
+}
+
 definePageMeta({
   middleware: 'authentication',
 })
@@ -20,6 +26,7 @@ const id = route.fullPath.split('/')[2].split('-')[
   route.fullPath.split('/')[2].split('-').length - 1
 ]
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
+console.log(blog.value)
 
 function updateBlog(html: string) {
   if (!blog.value) return
@@ -28,9 +35,14 @@ function updateBlog(html: string) {
     body: { content: html, title: blog.value.title },
   })
 }
-
+//tags related functions
+async function addTag(options: addTagType) {
+  blog.value = await useFetch(`/api/tag/${id}/create`, {
+    method: 'post',
+    body: { options },
+  }).data.value
+}
 const searchTags = useDebounceFn(async (query: string) => {
-  console.log(query)
   const { data: searchedTags } = await useFetch(`/api/tag`, {
     query: { name: query },
   })
@@ -65,6 +77,7 @@ const searchTags = useDebounceFn(async (query: string) => {
           :tags="tags"
           :query="tagInput"
           @updateTags="searchTags"
+          @addTag="addTag"
         />
       </div>
     </div>
