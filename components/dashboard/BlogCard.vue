@@ -17,10 +17,10 @@ const { blog } = defineProps<{
 
 const isShowing = ref(false)
 const blogRoute = computed(() => {
-  return `${session.value?.user?.name?.replaceAll(
+  return `${session.value!.user!.name!.replaceAll(
     ' ',
     '_'
-  )}/${blog.title.replaceAll(' ', '-')}-${blog.id}`
+  )}/${blog.title.replaceAll(' ', '-')}-${blog.id}`.toLowerCase()
 })
 </script>
 

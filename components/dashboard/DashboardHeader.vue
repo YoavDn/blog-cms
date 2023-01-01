@@ -1,15 +1,8 @@
 <script setup lang="ts">
+import { BlogPost } from '.prisma/client'
 import AvatarMenu from '../ui/AvatarMenu.vue'
 const { data: session } = useSession()
 const route = useRoute()
-
-const blogTitle = computed(() => {
-  const routeWithoutId = route.path
-    .split('-')
-    .slice(0, route.path.split('-').length - 1)
-    .join()
-  return routeWithoutId.split('/')[2].split(',').join('-').toLowerCase()
-})
 
 const onBlogPage = computed(() => {
   return (route.name as string).includes('user-title') ? true : false
@@ -40,17 +33,9 @@ const onBlogPage = computed(() => {
           >
             /
           </h1>
-          <NuxtLink v-if="(route.name as string).includes('user-title')">{{
-            blogTitle
-          }}</NuxtLink>
+          <NuxtLink v-if="onBlogPage">TODO</NuxtLink>
         </section>
         <section>
-          <!-- <img
-          v-if="session?.user?.image"
-          :src="session.user.image"
-          alt="user image"
-          class="aspect-video w-8 h-8 rounded-full"
-        /> -->
           <AvatarMenu />
         </section>
       </main>

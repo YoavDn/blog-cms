@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.6",
+    "@pinia/nuxt": "^0.4.6",
     "@prisma/client": "^4.7.1",
     "@tiptap/core": "^2.0.0-beta.209",
     "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.209",

@@ -20,8 +20,8 @@ async function newBlogPost() {
   const blogRoute = `${session.value?.user?.name?.replaceAll(
     ' ',
     '_'
-  )}/${newBlog.value.title.replaceAll(' ', '-')}-${newBlog.value.id}`
-  router.push({ path: `/` })
+  )}/${newBlog.value.title.replaceAll(' ', '-')}-${newBlog.value.id}/edit`
+  router.push({ path: `${blogRoute}` })
 }
 </script>
 

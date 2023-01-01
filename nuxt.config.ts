@@ -5,7 +5,11 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@sidebase/nuxt-auth',
     '@nuxtjs/color-mode',
+    '@pinia/nuxt',
   ],
+  imports: {
+    dirs: ['stores'],
+  },
   colorMode: {
     classSuffix: '',
   },

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useBlogStore } from '~~/stores/blogStore'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
@@ -10,21 +11,22 @@ const route = useRoute()
 const blogId = (route.params.title as string).split('-').pop()
 
 const { data: blog, refresh } = await useFetch(`/api/blog/${blogId}`)
-onMounted(() => refresh())
 
 // TODO: making code hightlight
-//
 
 //date
 const editedAt = computed<string>(() => {
-  if (!blog.value?.updatedAt) return '---'
-  const date = dayjs(blog.value!.updatedAt)
-    .toString()
-    .split(' ')
-    .slice(1, 3)
-    .join(' ')
-  const dateAgo = dayjs(blog.value.updatedAt).fromNow()
-  return `${date} (${dateAgo}) `
+  if (blog.value) {
+    const date = dayjs(blog.value.updatedAt)
+      .toString()
+      .split(' ')
+      .slice(1, 3)
+      .join(' ')
+    const dateAgo = dayjs(blog.value.updatedAt).fromNow()
+    return `${date} (${dateAgo}) `
+  } else {
+    return '---'
+  }
 })
 </script>
 
