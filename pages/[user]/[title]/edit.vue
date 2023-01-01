@@ -71,7 +71,23 @@ const searchTags = useDebounceFn(async (query: string) => {
         placeholder="Post title here..."
         v-model="blog.title"
       />
-      <div>
+      <div class="items-center">
+        <div v-if="blog.tags.length > 0" class="flex list-none gap-4">
+          <li
+            class="group/tag flex items-center rounded-md bg-fuchsia-400/20 px-2 font-bold duration-150 ease-in hover:text-black dark:text-neutral-500 dark:hover:text-white"
+            v-for="tag in blog.tags"
+            :key="tag.id"
+          >
+            #{{ tag.name }}
+            <span class="cursor-pointer pl-2">
+              <Icon
+                name="heroicons:x-mark"
+                class="h-8 w-5 duration-150 ease-in group-hover/tag:text-red-400"
+              />
+            </span>
+          </li>
+        </div>
+
         <TagsCombobox
           v-if="tags"
           :tags="tags"
