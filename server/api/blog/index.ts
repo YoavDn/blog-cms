@@ -18,6 +18,5 @@ export default defineEventHandler(async event => {
       userId: user?.id,
     },
   })
-  console.log('blogs are:', blogs)
   return blogs
 })

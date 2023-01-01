@@ -90,7 +90,7 @@ function setLink() {
   <main class="relative">
     <div
       v-if="editor"
-      class="ds-border sticky top-0 z-30 flex items-center border-y bg-gray-50 px-10 text-gray-500 dark:bg-black"
+      class="ds-border sticky top-0 z-30 flex items-center overflow-auto border-y bg-gray-50 px-10 text-gray-500 dark:bg-black"
     >
       <button
         v-tooltip="'Bold'"

@@ -1,40 +1,51 @@
 <script setup lang="ts">
+import { BlogPost } from '.prisma/client'
+
+const router = useRouter()
 const props = defineProps<{ layout: 'grid' | 'list' }>()
 
 function isActiveLayout(type: 'list' | 'grid') {
   return type === props.layout
 }
 
-function newBlogPost() {
+const { data: session } = useSession()
+
+async function newBlogPost() {
   console.log('new post')
-  useFetch('/api/blog', {
+  const { data: newBlog } = await useFetch('/api/blog/create', {
     method: 'POST',
-    body: {},
   })
+  if (!newBlog.value) return
+
+  const blogRoute = `${session.value?.user?.name?.replaceAll(
+    ' ',
+    '_'
+  )}/${newBlog.value.title.replaceAll(' ', '-')}-${newBlog.value.id}`
+  router.push({ path: `/` })
 }
 </script>
 
 <template>
-  <div class="relative py-3 flex w-full flex items-center">
-    <div class="input-container basis-9/12 max-w-full h-10 flex items-center">
+  <div class="relative flex flex w-full items-center py-3">
+    <div class="input-container flex h-10 max-w-full basis-9/12 items-center">
       <input
         type="text"
         placeholder="Search.."
-        class="order-1 peer/input h-full dark:text-white bg-white dark:bg-black ease-in-out duration-150 focus:border-gray-800 dark:focus:border-neutral-500 px-3 border-r border-t w-full rounded-r-md border-gray-200 dark:border-neutral-700 border-b placeholder:font-light outline-none placeholder:text-sm"
+        class="peer/input order-1 h-full w-full rounded-r-md border-r border-t border-b border-gray-200 bg-white px-3 outline-none duration-150 ease-in-out placeholder:text-sm placeholder:font-light focus:border-gray-800 dark:border-neutral-700 dark:bg-black dark:text-white dark:focus:border-neutral-500"
       />
       <span
-        class="h-full pl-3 text-gray-400 bg-white dark:bg-black rounder-l-md border-l border-y rounded-l-md peer-focus/input:border-gray-800 dark:peer-focus/input:border-neutral-500 ease-in-out duration-150 dark:border-neutral-700"
+        class="rounder-l-md h-full rounded-l-md border-y border-l bg-white pl-3 text-gray-400 duration-150 ease-in-out peer-focus/input:border-gray-800 dark:border-neutral-700 dark:bg-black dark:peer-focus/input:border-neutral-500"
       >
         <Icon name="heroicons-solid:search" class="h-10 w-5 text-gray-400" />
       </span>
     </div>
     <div
-      class="flex h-10 mx-2 border-collapse basis-1/12 rounded-md justify-center"
+      class="mx-2 flex h-10 basis-1/12 border-collapse justify-center rounded-md"
       title="Switch between grid and list view"
     >
       <button
         @click="$emit('changeLayout', 'grid')"
-        class="border-l border border-gray-200 dark:border-neutral-700 md:dark:hover:border-neutral-500 dark:bg-black rounded-l-md px-2 md:hover:border-gray-800 ease-in-out duration-150"
+        class="rounded-l-md border border-l border-gray-200 px-2 duration-150 ease-in-out dark:border-neutral-700 dark:bg-black md:hover:border-gray-800 md:dark:hover:border-neutral-500"
         :class="{ 'bg-gray-100 dark:bg-neutral-800': isActiveLayout('grid') }"
       >
         <Icon
@@ -45,7 +56,7 @@ function newBlogPost() {
       </button>
       <button
         @click="$emit('changeLayout', 'list')"
-        class="border-r border border-gray-200 rounded-r-md px-2 dark:border-neutral-700 md:dark:hover:border-neutral-500 md:hover:border-gray-800 ease-in-out duration-150"
+        class="rounded-r-md border border-r border-gray-200 px-2 duration-150 ease-in-out dark:border-neutral-700 md:hover:border-gray-800 md:dark:hover:border-neutral-500"
         :class="{ 'bg-gray-100 dark:bg-neutral-800': isActiveLayout('list') }"
       >
         <Icon
@@ -55,18 +66,18 @@ function newBlogPost() {
         />
       </button>
     </div>
-    <nuxtLink
-      to="/new"
-      class="group/new-post basis-2/12 h-10 dark:text-black dark:bg-white text-white dark:md:hover:text-white dark:md:hover:border-white dark:md:hover:bg-black md:hover:text-black md:hover:bg-white ease-in-out duration-150 md:hover:border-black border bg-black rounded-md text-start px-4 text-sm flex items-center justify-center md:justify-start"
+    <button
+      @click="newBlogPost"
+      class="group/new-post flex h-10 basis-2/12 items-center justify-center rounded-md border bg-black px-4 text-start text-sm text-white duration-150 ease-in-out dark:bg-white dark:text-black md:justify-start md:hover:border-black md:hover:bg-white md:hover:text-black dark:md:hover:border-white dark:md:hover:bg-black dark:md:hover:text-white"
     >
       <span class="pr-1 text-center">
         <Icon
           name="heroicons:plus"
-          class="h-12 w-4 text-white dark:text-black md:group-hover/new-post:text-black dark:md:group-hover/new-post:text-white ease-in-out duration-150"
+          class="h-12 w-4 text-white duration-150 ease-in-out dark:text-black md:group-hover/new-post:text-black dark:md:group-hover/new-post:text-white"
         />
       </span>
       <span class="hidden md:block"> New Post </span>
-    </nuxtLink>
+    </button>
   </div>
 </template>
 
