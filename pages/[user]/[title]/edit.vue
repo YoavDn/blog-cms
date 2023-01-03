@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import type { Tag } from '.prisma/client'
+import { Tag } from '@prisma/client'
 import TagsCombobox from '~~/components/editor/TagsCombobox.vue'
 import { useRoute } from 'vue-router'
-import { useStorage } from '@vueuse/core'
 import TipTap from '~~/components/editor/TipTap.vue'
-import { BlogPost } from '.prisma/client'
 import { useDebounceFn } from '@vueuse/core'
-const isWarningModalOpen = ref(false)
 
 type addTagType = {
   isNew: boolean
+  toRemove?: boolean
   tag?: Tag
   name?: string
 }
@@ -28,20 +26,22 @@ const id = route.fullPath.split('/')[2].split('-')[
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
 console.log(blog.value)
 
-function updateBlog(html: string) {
+async function updateBlog(html: string) {
   if (!blog.value) return
-  useFetch(`/api/blog/${id}/update`, {
+  blog.value = await useFetch(`/api/blog/${id}/update`, {
     method: 'put',
     body: { content: html, title: blog.value.title },
-  })
+  }).data.value
 }
 //tags related functions
-async function addTag(options: addTagType) {
-  blog.value = await useFetch(`/api/tag/${id}/create`, {
-    method: 'post',
+async function updateTag(options: addTagType) {
+  console.log('theId is', id)
+  blog.value = await useFetch(`/api/tag/${id}/update`, {
+    method: 'put',
     body: { options },
   }).data.value
 }
+
 const searchTags = useDebounceFn(async (query: string) => {
   const { data: searchedTags } = await useFetch(`/api/tag`, {
     query: { name: query },
@@ -74,12 +74,15 @@ const searchTags = useDebounceFn(async (query: string) => {
       <div class="items-center">
         <div v-if="blog.tags.length > 0" class="flex list-none gap-4">
           <li
-            class="group/tag flex items-center rounded-md bg-fuchsia-400/20 px-2 font-bold duration-150 ease-in hover:text-black dark:text-neutral-500 dark:hover:text-white"
+            class="group/tag flex items-center rounded-md bg-fuchsia-400/20 px-2 font-bold duration-150 ease-in hover:text-black dark:text-neutral-300 dark:hover:text-white"
             v-for="tag in blog.tags"
             :key="tag.id"
           >
             #{{ tag.name }}
-            <span class="cursor-pointer pl-2">
+            <span
+              class="cursor-pointer pl-2"
+              @click="updateTag({ isNew: false, tag, toRemove: true })"
+            >
               <Icon
                 name="heroicons:x-mark"
                 class="h-8 w-5 duration-150 ease-in group-hover/tag:text-red-400"
@@ -93,7 +96,7 @@ const searchTags = useDebounceFn(async (query: string) => {
           :tags="tags"
           :query="tagInput"
           @updateTags="searchTags"
-          @addTag="addTag"
+          @addTag="updateTag"
         />
       </div>
     </div>

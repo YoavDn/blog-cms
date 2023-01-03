@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import PopupIcon from '../ui/PopupIcon.vue'
+import { dateAgo, editedAt } from '~~/utils/date'
+import { BlogPost } from '.prisma/client'
 const { data: session } = useSession()
 const { blog } = defineProps<{
-  blog: {
-    title: string
-    createdAt: string
-    content: string | null
-    published: boolean
-    publishedAt?: string
-    image?: string
-    authorId: number
-    lastUpdate: string
-    id: number
-  }
+  blog: BlogPost
 }>()
 
 const isShowing = ref(false)
@@ -22,6 +14,10 @@ const blogRoute = computed(() => {
     '_'
   )}/${blog.title.replaceAll(' ', '-')}-${blog.id}`.toLowerCase()
 })
+
+const edited = (updateAt: Date) => {
+  return dateAgo(updateAt)
+}
 </script>
 
 <template>
@@ -63,7 +59,7 @@ const blogRoute = computed(() => {
             {{ blog.publishedAt }}
           </p>
           <p class="font-light text-gray-500">
-            Edited: <span>{{ blog.lastUpdate }}</span>
+            Edited: <span>{{ blog.updatedAt }}</span>
           </p>
         </div>
         <div v-else class="draft flex items-center">
@@ -74,9 +70,12 @@ const blogRoute = computed(() => {
           <p class="rounded-md p-1 text-sm text-red-500 dark:text-red-400">
             Draft
           </p>
+          <p class="ml-4 text-sm dark:text-white">
+            {{ edited(blog.updatedAt) }}
+          </p>
         </div>
       </div>
-      <div class="Actions"></div>
+      <div></div>
     </article>
   </NuxtLink>
 </template>

@@ -16,6 +16,7 @@ export default defineEventHandler(async event => {
       data: {
         userId: user!.id,
       },
+      include: { tags: true },
     })
 
     return blogPost

@@ -10,6 +10,7 @@ import {
 
 type addTagType = {
   isNew: boolean
+  toRemove?: boolean
   tag?: Tag
   name?: string
 }
@@ -37,7 +38,7 @@ function updateTags(event: any) {
         <ComboboxInput
           as="input"
           v-model="query"
-          class="w-full py-2 px-4 text-sm outline-none placeholder:italic dark:bg-neutral-900 dark:text-white"
+          class="w-full py-2 text-sm outline-none placeholder:italic dark:bg-neutral-900 dark:text-white"
           placeholder="Add tags.."
           @change="updateTags"
         />

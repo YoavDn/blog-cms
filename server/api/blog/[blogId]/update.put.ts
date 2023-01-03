@@ -7,12 +7,12 @@ export default defineEventHandler(async event => {
   if (!session) {
     return null
   }
-  console.log(body)
 
   const updateUser = await prisma.blogPost.update({
     where: {
-      id: +event.context.params.blogId,
+      id: Number(event.context.params.blogId),
     },
+    include: { tags: true },
     data: {
       content: body.content,
       title: body.title,

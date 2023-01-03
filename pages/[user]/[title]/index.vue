@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { dateAgo, editedAt } from '~~/utils/date'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
@@ -14,15 +15,14 @@ const { data: blog, refresh } = await useFetch(`/api/blog/${blogId}`)
 // TODO: making code hightlight
 
 //date
-const editedAt = computed<string>(() => {
+const edited = computed<string>(() => {
   if (blog.value) {
     const date = dayjs(blog.value.updatedAt)
       .toString()
       .split(' ')
       .slice(1, 3)
       .join(' ')
-    const dateAgo = dayjs(blog.value.updatedAt).fromNow()
-    return `${date} (${dateAgo}) `
+    return `${editedAt(blog.value.updatedAt)} ${dateAgo(blog.value.updatedAt)}`
   } else {
     return '---'
   }
@@ -37,7 +37,7 @@ const editedAt = computed<string>(() => {
     <header>
       <h1>{{ blog.title }}</h1>
       <div class="flex">
-        <p class="text-sm">Edited: {{ editedAt }}</p>
+        <p class="text-sm">Edited: {{ edited }}</p>
       </div>
       <div
         class="flex list-none space-x-3 text-sm underline decoration-rose-200"
