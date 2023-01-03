@@ -6,7 +6,7 @@ export default defineEventHandler(async event => {
       where: {
         id: +event.context.params.blogId,
       },
-      include: { tags: true },
+      include: { tags: true, User: true },
     })
 
     return blog

@@ -1,14 +1,12 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
   const { data: session } = useSession()
-  console.log('a;dlfkj', to.params, session.value)
+  const id = (to.params.title as string).split('-').pop()
+  const { data: blog } = await useFetch(`/api/blog/${'1'}`)
   if (!session.value) {
     return navigateTo('/')
   }
 
-  if (
-    to.params.user ===
-    session.value.user!.name!.replaceAll(' ', '_').toLowerCase()
-  ) {
+  if (blog.value?.User.email === session.value.user!.email) {
     return
   }
   return navigateTo('/error')
