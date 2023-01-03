@@ -16,6 +16,8 @@ export default defineEventHandler(async event => {
     data: {
       content: body.content,
       title: body.title,
+      published: body.published,
+      publishedAt: body.published ? new Date() : null,
     },
   })
 

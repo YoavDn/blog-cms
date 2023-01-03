@@ -79,7 +79,7 @@ model BlogPost {
     content        String?   @db.LongText
     tags           Tag[]   
     published      Boolean   @default(false)
-    publishedAt    DateTime?
+    publishedAt    DateTime? @db.Date
     image          String?   @db.VarChar(255)
    
     User           User     @relation(fields: [userId], references: [id])

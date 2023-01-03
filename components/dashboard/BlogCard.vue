@@ -6,7 +6,7 @@ const { data: session } = useSession()
 const { blog } = defineProps<{
   blog: BlogPost
 }>()
-
+console.log(blog)
 const isShowing = ref(false)
 const blogRoute = computed(() => {
   return `${session.value!.user!.name!.replaceAll(
@@ -29,7 +29,7 @@ const edited = (updateAt: Date) => {
     >
       <NuxtLink :to="`${blogRoute}/edit`">
         <PopupIcon
-          v-tooltip="'Edit Blog'"
+          v-tooltip="'Edit'"
           :isShowing="isShowing"
           icon="heroicons:pencil-square"
         />
@@ -52,26 +52,24 @@ const edited = (updateAt: Date) => {
         </h2>
         <div
           v-if="blog.published"
-          class="info flex flex-col text-sm font-light text-gray-500 md:flex-row md:items-center md:gap-4"
+          class="info flex flex-col text-sm font-light text-gray-500 dark:text-neutral-500 md:flex-row md:items-center md:gap-4"
         >
           <p>
             Published:
-            {{ blog.publishedAt }}
+            {{ editedAt(blog.publishedAt as Date) }}
           </p>
-          <p class="font-light text-gray-500">
-            Edited: <span>{{ blog.updatedAt }}</span>
+          <p class="font-light">
+            Edited: <span>{{ edited(blog.updatedAt) }}</span>
           </p>
         </div>
-        <div v-else class="draft flex items-center">
+        <div v-else class="draft flex items-center text-sm font-light">
           <Icon
             name="heroicons:x-circle-20-solid"
             class="text-red-500 dark:text-red-400"
           />
-          <p class="rounded-md p-1 text-sm text-red-500 dark:text-red-400">
-            Draft
-          </p>
-          <p class="ml-4 text-sm dark:text-white">
-            {{ edited(blog.updatedAt) }}
+          <p class="ml-1 rounded-md text-red-500 dark:text-red-400">Draft</p>
+          <p class="ml-4 dark:text-neutral-500">
+            Edited:{{ edited(blog.updatedAt) }}
           </p>
         </div>
       </div>

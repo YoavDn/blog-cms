@@ -13,7 +13,7 @@ import { emit } from 'process'
 
 const props = defineProps<{ blog: BlogPost }>()
 const emit = defineEmits<{
-  (e: 'updateBlog', html: string): void
+  (e: 'updateBlog', html: string, published: boolean): void
 }>()
 const isLinkModalOpen = ref<boolean>(false)
 const linkUrl = ref('')
@@ -173,6 +173,7 @@ function setLink() {
       class="ds-border m-auto mt-4 space-x-4 rounded-b-md border-t bg-gray-50 p-4 text-sm dark:bg-neutral-900"
     >
       <button
+        @click="$emit('updateBlog', editor?.getHTML(), true)"
         class="rounded-md border border-fuchsia-500 bg-fuchsia-500 p-2 px-5 text-white duration-150 ease-in sm:hover:bg-fuchsia-500/0 sm:hover:text-fuchsia-500"
       >
         Publish

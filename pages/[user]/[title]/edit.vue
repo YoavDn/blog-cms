@@ -26,11 +26,11 @@ const id = route.fullPath.split('/')[2].split('-')[
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
 console.log(blog.value)
 
-async function updateBlog(html: string) {
+async function updateBlog(html: string, published = false) {
   if (!blog.value) return
   blog.value = await useFetch(`/api/blog/${id}/update`, {
     method: 'put',
-    body: { content: html, title: blog.value.title },
+    body: { content: html, title: blog.value.title, published },
   }).data.value
 }
 //tags related functions
