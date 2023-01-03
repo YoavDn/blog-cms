@@ -4,11 +4,12 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/nord.css'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-dayjs.extend(relativeTime)
 
 definePageMeta({
-  middleware: 'authentication',
+  middleware: ['auth'],
 })
+dayjs.extend(relativeTime)
+
 const blogTitle = useBlogTitle()
 const route = useRoute()
 const blogId = (route.params.title as string).split('-').pop()
@@ -18,7 +19,6 @@ blogTitle.value = blog.value!.title
 
 const edited = computed(() => dateAgo(blog.value!.updatedAt))
 
-// TODO: making code hightlight
 onMounted(() => {
   hljs.highlightAll()
 })

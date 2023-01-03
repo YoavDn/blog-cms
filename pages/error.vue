@@ -1,8 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  layout: 'landing',
+  auth: false,
+})
+</script>
 
 <template>
-  <div class="">
-    <h2>page not found</h2>
+  <div>
+    <h2 class="dark:text-white">error</h2>
   </div>
 </template>
 
