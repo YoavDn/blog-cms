@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { BlogPost } from '.prisma/client'
 import AvatarMenu from '../ui/AvatarMenu.vue'
 const { data: session } = useSession()
+const blogTitle = useBlogTitle()
 const route = useRoute()
 
 const onBlogPage = computed(() => {
@@ -33,7 +33,7 @@ const onBlogPage = computed(() => {
           >
             /
           </h1>
-          <NuxtLink v-if="onBlogPage">TODO</NuxtLink>
+          <NuxtLink v-if="onBlogPage">{{ blogTitle }}</NuxtLink>
         </section>
         <section>
           <AvatarMenu />

@@ -17,6 +17,7 @@ definePageMeta({
 })
 
 const tagInput = ref('')
+const blogTitle = useBlogTitle()
 const { data: tags } = await useFetch(`/api/tag`)
 
 const route = useRoute()
@@ -24,7 +25,7 @@ const id = route.fullPath.split('/')[2].split('-')[
   route.fullPath.split('/')[2].split('-').length - 1
 ]
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
-console.log(blog.value)
+blogTitle.value = blog.value!.title
 
 async function updateBlog(html: string, published = false) {
   if (!blog.value) return

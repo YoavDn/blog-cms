@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { dateAgo, editedAt } from '~~/utils/date'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/nord.css'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
@@ -7,25 +9,18 @@ dayjs.extend(relativeTime)
 definePageMeta({
   middleware: 'authentication',
 })
+const blogTitle = useBlogTitle()
 const route = useRoute()
 const blogId = (route.params.title as string).split('-').pop()
 
-const { data: blog, refresh } = await useFetch(`/api/blog/${blogId}`)
+const { data: blog } = await useFetch(`/api/blog/${blogId}`)
+blogTitle.value = blog.value!.title
+
+const edited = computed(() => dateAgo(blog.value!.updatedAt))
 
 // TODO: making code hightlight
-
-//date
-const edited = computed<string>(() => {
-  if (blog.value) {
-    const date = dayjs(blog.value.updatedAt)
-      .toString()
-      .split(' ')
-      .slice(1, 3)
-      .join(' ')
-    return `${editedAt(blog.value.updatedAt)} ${dateAgo(blog.value.updatedAt)}`
-  } else {
-    return '---'
-  }
+onMounted(() => {
+  hljs.highlightAll()
 })
 </script>
 
