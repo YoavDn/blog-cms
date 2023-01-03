@@ -56,7 +56,7 @@ function compareTags(a: Tag, b: Tag) {
         leave-to-class="transform scale-95 opacity-0"
       >
         <ComboboxOptions
-          class="ds-border absolute top-4 z-40 w-full rounded-md border bg-white p-2 shadow-sm dark:bg-black"
+          class="ds-border absolute top-4 z-40 max-h-60 w-full overflow-auto rounded-md border bg-white p-2 shadow-sm dark:bg-black"
         >
           <div
             @click="$emit('addTag', { isNew: true, name: query })"
@@ -67,7 +67,7 @@ function compareTags(a: Tag, b: Tag) {
           </div>
 
           <ComboboxOption
-            class="ds-border flex cursor-pointer flex-col py-2 px-4 font-light text-gray-700 dark:text-neutral-500"
+            class="ds-border flex cursor-pointer flex-col px-4 font-light text-gray-700 dark:text-neutral-500"
             v-for="tag in tags"
             :key="tag.id"
             :value="tag"
