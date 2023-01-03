@@ -3,27 +3,26 @@ const route = useRoute()
 const links = ref<{ name: string; route: string }[]>()
 const { data: session } = useSession()
 
+const usernameRouteFormat = computed(() =>
+  session.value?.user?.name?.replaceAll(' ', '_').toLocaleLowerCase()
+)
+
 function updateLinks() {
-  if (
-    route.fullPath.split('/')[1] ===
-    session.value?.user?.name?.replaceAll(' ', '_')
-  ) {
+  if (route.fullPath.split('/')[1] === usernameRouteFormat.value) {
     links.value = [
       {
         name: 'Overview',
-        route: `/${session.value.user.name.replaceAll(' ', '_')}/${
-          route.fullPath.split('/')[2]
-        }`,
+        route: `/${usernameRouteFormat.value}/${route.fullPath.split('/')[2]}`,
       },
       {
         name: 'Edit',
-        route: `/${session.value.user.name.replaceAll(' ', '_')}/${
+        route: `/${usernameRouteFormat.value}/${
           route.fullPath.split('/')[2]
         }/edit`,
       },
       {
         name: 'Settings',
-        route: `/${session.value.user.name.replaceAll(' ', '_')}/${
+        route: `/${usernameRouteFormat.value}/${
           route.fullPath.split('/')[2]
         }/settings`,
       },
