@@ -5,42 +5,37 @@ import { useRoute } from 'vue-router'
 import TipTap from '~~/components/editor/TipTap.vue'
 import { useDebounceFn } from '@vueuse/core'
 
-type addTagType = {
-  isNew: boolean
-  toRemove?: boolean
-  tag?: Tag
-  name?: string
-}
-
 definePageMeta({
   middleware: 'authentication',
 })
 
-const tagInput = ref('')
+const route = useRoute()
 const blogTitle = useBlogTitle()
 const { data: tags } = await useFetch(`/api/tag`)
 
-const route = useRoute()
 const id = route.fullPath.split('/')[2].split('-')[
   route.fullPath.split('/')[2].split('-').length - 1
 ]
+const tagInput = ref('')
 const { data: blog, refresh } = await useFetch(`/api/blog/${id}`)
 blogTitle.value = blog.value!.title
 
 async function updateBlog(html: string, published = false) {
   if (!blog.value) return
+
   blog.value = await useFetch(`/api/blog/${id}/update`, {
     method: 'put',
-    body: { content: html, title: blog.value.title, published },
+    body: {
+      content: html,
+      title: blog.value.title,
+      published,
+      tags: blog.value.tags,
+    },
   }).data.value
 }
-//tags related functions
-async function updateTag(options: addTagType) {
-  console.log('theId is', id)
-  blog.value = await useFetch(`/api/tag/${id}/update`, {
-    method: 'put',
-    body: { options },
-  }).data.value
+
+function removeTag(id: number) {
+  blog.value!.tags = blog.value!.tags.filter((tag: Tag) => tag.id !== id)
 }
 
 const searchTags = useDebounceFn(async (query: string) => {
@@ -82,7 +77,8 @@ const searchTags = useDebounceFn(async (query: string) => {
             #{{ tag.name }}
             <span
               class="cursor-pointer pl-2"
-              @click="updateTag({ isNew: false, tag, toRemove: true })"
+              v-tooltip="'Delete tag'"
+              @click="removeTag(tag.id)"
             >
               <Icon
                 name="heroicons:x-mark"
@@ -96,8 +92,8 @@ const searchTags = useDebounceFn(async (query: string) => {
           v-if="tags"
           :tags="tags"
           :query="tagInput"
+          v-model="blog.tags"
           @updateTags="searchTags"
-          @addTag="updateTag"
         />
       </div>
     </div>

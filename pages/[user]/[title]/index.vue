@@ -30,7 +30,7 @@ onMounted(() => {
     class="prose prose-neutral ds-border dark:prose-invert lg:prose-xl m-auto flex flex-col rounded-md border bg-white p-12 py-4 shadow-sm dark:bg-neutral-900 dark:text-neutral-200"
   >
     <header>
-      <h1>{{ blog.title }}</h1>
+      <h1 class="pt-10">{{ blog.title }}</h1>
       <div class="flex">
         <p class="text-sm">Edited: {{ edited }}</p>
       </div>
