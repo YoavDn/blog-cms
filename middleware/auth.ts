@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const { data: session } = useSession()
   const id = (to.params.title as string).split('-').pop()
-  const { data: blog } = await useFetch(`/api/blog/${'1'}`)
+  const { data: blog } = await useFetch(`/api/blog/${id}`)
   if (!session.value) {
     return navigateTo('/')
   }
